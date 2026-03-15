@@ -632,13 +632,20 @@ const DEFAULT_USERS=[
   {id:'admin',name:'Administrador',pass:'admin2024',role:'Admin'}
 ];
 let DB=(()=>{ try{return JSON.parse(localStorage.getItem('veritas_db')||'null')||{};}catch(e){return{};} })();
-if(!DB.users||!DB.users.length) DB.users=DEFAULT_USERS;
-DEFAULT_USERS.forEach(du=>{if(!DB.users.find(u=>u.id===du.id))DB.users.push(du);});
-['eventos','submissoes','avaliacoes','emitidos'].forEach(k=>{if(!DB[k])DB[k]=[];});
-if(!DB.certPass) DB.certPass='cert2024';
-if(!DB.participants) DB.participants={};
-if(!DB.starRatings) DB.starRatings={};
-if(!DB.customization) DB.customization={};
+// CORREÇÃO: função que garante todas as chaves do DB existem (chamada após cada sync remoto também)
+function _ensureDB(){
+  if(!DB.users||!DB.users.length) DB.users=DEFAULT_USERS;
+  DEFAULT_USERS.forEach(du=>{if(!DB.users.find(u=>u.id===du.id))DB.users.push(du);});
+  if(!Array.isArray(DB.eventos))     DB.eventos=[];
+  if(!Array.isArray(DB.submissoes))  DB.submissoes=[];
+  if(!Array.isArray(DB.avaliacoes))  DB.avaliacoes=[];
+  if(!Array.isArray(DB.emitidos))    DB.emitidos=[];
+  if(!DB.certPass)    DB.certPass='cert2024';
+  if(!DB.participants || typeof DB.participants!=='object' || Array.isArray(DB.participants)) DB.participants={};
+  if(!DB.starRatings  || typeof DB.starRatings!=='object'  || Array.isArray(DB.starRatings))  DB.starRatings={};
+  if(!DB.customization|| typeof DB.customization!=='object') DB.customization={};
+}
+_ensureDB();
 
 // ════════════════════════════════════════
 // FIREBASE SYNC
@@ -652,39 +659,50 @@ function saveDB(){
     if(window._bc) try{ window._bc.postMessage({type:'db_update', ts:Date.now()}); }catch(e){}
     // Firebase: envia para todos os dispositivos remotos
     if(window.database && !_fbWriting){
+      // CORREÇÃO: chama _ensureDB antes de escrever para garantir estrutura válida
+      _ensureDB();
       database.ref('veritas_db').set(DB).catch(err => {
-        console.warn('Firebase write error:', err.message);
+        console.warn('Firebase write error:', err.code, err.message);
       });
     }
   }catch(e){ console.error('saveDB error:', e); }
 }
 
-// Listener em tempo real — recebe mudanças de outros dispositivos
+// CORREÇÃO: Listener Firebase com try/catch completo e onError callback
 function _startFirebaseListener(){
   if(!window.database) return;
   database.ref('veritas_db').on('value', (snapshot) => {
-    const remoteDB = snapshot.val();
-    if(!remoteDB) return;
-    // Só aplica se tiver dados válidos e forem DIFERENTES dos locais
-    const remoteStr = JSON.stringify(remoteDB);
-    const localStr  = JSON.stringify(DB);
-    if(remoteStr === localStr) return; // nada mudou, ignora
-    _fbWriting = true; // evita loop: não re-escreve no Firebase ao receber dados
-    DB = remoteDB;
-    try{ localStorage.setItem('veritas_db', JSON.stringify(DB)); }catch(e){}
-    _fbWriting = false;
-    // Re-renderiza a interface para todos verem as atualizações
-    if(typeof renderAll === 'function') renderAll();
-    // Se a página de ranking ou participantes estiver ativa, atualiza também
-    const activePage = document.querySelector('.page.active');
-    if(activePage){
-      const pid = activePage.id.replace('page-','');
-      if(pid==='ranking'&&typeof renderRanking==='function'){ renderRanking(); }
-      if(pid==='participantes'&&typeof renderParticipantes==='function'){ renderParticipantes(); }
-      if(pid==='publico'&&typeof renderPublicoPage==='function'){ renderPublicoPage(); }
+    try{
+      const remoteDB = snapshot.val();
+      // CORREÇÃO: valida que remoteDB é objeto antes de usar
+      if(!remoteDB || typeof remoteDB !== 'object' || Array.isArray(remoteDB)) return;
+      const remoteStr = JSON.stringify(remoteDB);
+      const localStr  = JSON.stringify(DB);
+      if(remoteStr === localStr) return;
+      _fbWriting = true;
+      DB = remoteDB;
+      // CORREÇÃO: garante todas as chaves após sync remoto
+      _ensureDB();
+      try{ localStorage.setItem('veritas_db', JSON.stringify(DB)); }catch(e){}
+      _fbWriting = false;
+      if(typeof renderAll === 'function') renderAll();
+      const activePage = document.querySelector('.page.active');
+      if(activePage){
+        const pid = activePage.id.replace('page-','');
+        try{
+          if(pid==='ranking'&&typeof renderRanking==='function') renderRanking();
+          if(pid==='participantes'&&typeof renderParticipantes==='function') renderParticipantes();
+          if(pid==='publico'&&typeof renderPublicoPage==='function') renderPublicoPage();
+        }catch(renderErr){ console.warn('Firebase: erro ao renderizar página ativa:', renderErr); }
+      }
+    }catch(e){
+      // CORREÇÃO: captura qualquer erro no callback sem quebrar o listener
+      _fbWriting = false;
+      console.error('Firebase listener callback error:', e);
     }
   }, (err) => {
-    console.warn('Firebase listener error:', err.message);
+    // CORREÇÃO: onError callback explícito (segundo argumento do .on)
+    console.error('Firebase listener permission/connection error:', err.code, err.message);
   });
 }
 _startFirebaseListener();
@@ -735,8 +753,9 @@ function getOrCreateParticipant(name){
   return DB.participants[name];
 }
 function updateParticipantAfterEvent(evId){
-  const subs=DB.submissoes.filter(s=>s.eventoId===evId);
-  const ev=DB.eventos.find(e=>e.id===evId);
+  // CORREÇÃO: fallback para array vazio
+  const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
+  const ev=(DB.eventos||[]).find(e=>e.id===evId);
   let ranked=subs.map(s=>{
     const avs=DB.avaliacoes.filter(a=>a.subId===s.id);
     const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
@@ -858,7 +877,7 @@ function renderEventos(){
   const isAdmin=currentUser&&currentUser.id==='admin';
   if(!DB.eventos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:26px;padding:1rem 0">Nenhum evento cadastrado.</div>';return;}
   el.innerHTML=DB.eventos.map(ev=>{
-    const subs=DB.submissoes.filter(s=>s.eventoId===ev.id).length;
+    const subs=(DB.submissoes||[]).filter(s=>s.eventoId===ev.id).length;
     const tierLabel=ev.tierMin&&ev.tierMin!=='none'?`Restrito: ${{acolito:'Acólito+',veterano:'Veterano+',escritor:'Escritores'}[ev.tierMin]}`:'Aberto a todos';
     const tierBadge=ev.tierMin&&ev.tierMin!=='none'?`<span class="badge badge-crimson">${tierLabel}</span>`:`<span class="badge badge-blue">${tierLabel}</span>`;
     const finalBadge=ev.finalized?'<span class="badge badge-champion">✦ Finalizado</span>':'<span class="badge badge-silver">Em curso</span>';
@@ -898,8 +917,9 @@ function openFinalizeEvent(evId){
   const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return;
   pendingFinalizeId=evId;
   document.getElementById('finalizeInfo').textContent=`Evento: "${ev.nome}"`;
-  const subs=DB.submissoes.filter(s=>s.eventoId===evId);
-  let ranked=subs.map(s=>{const avs=DB.avaliacoes.filter(a=>a.subId===s.id);const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);return{...s,avg:sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null};}).filter(s=>s.avg!==null).sort((a,b)=>b.avg-a.avg);
+  // CORREÇÃO: fallbacks defensivos
+  const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
+  let ranked=subs.map(s=>{const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);return{...s,avg:sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null};}).filter(s=>s.avg!==null).sort((a,b)=>b.avg-a.avg);
   const medals=['🥇','🥈','🥉'];
   let html='<div style="margin-bottom:0.875rem;font-size:22px;font-family:var(--font-sans);color:var(--text3)">Pódio atual:</div>';
   if(!ranked.length) html+='<div style="color:var(--text3);font-family:var(--font-sans);font-size:22px">Nenhum texto avaliado.</div>';
@@ -925,7 +945,8 @@ function openEventDetail(evId){
   if(!ev) return;
   currentDetailEvId=evId;
   document.getElementById('evDetailTitle').textContent=ev.nome;
-  const subs=DB.submissoes.filter(s=>s.eventoId===evId).length;
+  // CORREÇÃO: fallback
+  const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId).length;
   const status=ev.finalized?'✦ Finalizado':'Em curso';
   document.getElementById('evDetailMeta').innerHTML=
     `<span class="badge ${ev.finalized?'badge-champion':'badge-silver'}">${status}</span>&nbsp; `+
@@ -946,7 +967,8 @@ function switchEvTab(tab){
 function renderEventDetailSubs(){
   const evId=currentDetailEvId;
   const ev=DB.eventos.find(e=>e.id===evId);
-  const subs=DB.submissoes.filter(s=>s.eventoId===evId);
+  // CORREÇÃO: fallback
+  const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
   const cont=document.getElementById('evTabContentSubs');
   if(!subs.length){
     cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px;padding:1.5rem 0;text-align:center">Nenhuma submissão ainda para este evento.</div>';
@@ -963,7 +985,8 @@ function renderEventDetailSubs(){
     html+=`<div style="margin-bottom:1.25rem">
       <div style="font-family:var(--font-display);font-size:28px;color:var(--gold2);margin-bottom:0.75rem;padding-bottom:6px;border-bottom:1px solid var(--border)">${mLabel} <span class="badge ${mBadge}">${list.length}</span></div>`;
     list.forEach(s=>{
-      const avs=DB.avaliacoes.filter(a=>a.subId===s.id);
+      // CORREÇÃO: fallback
+      const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
       const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2):'—';
       const judgesHtml=avs.map(a=>`<span class="badge badge-silver" style="font-size:22px">${a.judgeName}: ${a.finalScore!=null?a.finalScore.toFixed(2):'—'}</span>`).join(' ');
@@ -1040,7 +1063,8 @@ function saveDetailSubmissao(){
   if(!titulo||!autor||!texto){err.textContent='Preencha todos os campos.';err.classList.remove('hidden');return;}
   const ev=DB.eventos.find(e=>e.id===eventoId);
   if(ev.finalized){err.textContent='Evento finalizado.';err.classList.remove('hidden');return;}
-  if(DB.submissoes.filter(s=>s.eventoId===eventoId).length>=ev.max){
+  // CORREÇÃO: fallback
+  if((DB.submissoes||[]).filter(s=>s.eventoId===eventoId).length>=ev.max){
     err.textContent=`Limite de ${ev.max} submissões atingido.`;err.classList.remove('hidden');return;
   }
   const wc=countWords(texto);
@@ -1085,7 +1109,8 @@ function evalFromDetail(subId){
 // ════════════════════════════════════════
 function populateSubEventoSelect(){
   const sel=document.getElementById('subEvento');
-  sel.innerHTML='<option value="">—</option>'+DB.eventos.filter(e=>!e.finalized).map(e=>`<option value="${e.id}">${e.nome}</option>`).join('');
+  // CORREÇÃO: fallback
+sel.innerHTML='<option value="">—</option>'+(DB.eventos||[]).filter(e=>!e.finalized).map(e=>`<option value="${e.id}">${e.nome}</option>`).join('');
 }
 function updateSubWordLimit(){
   const ev=DB.eventos.find(e=>e.id===document.getElementById('subEvento').value);
@@ -1128,13 +1153,15 @@ function renderSubmissoes(){
   const el=document.getElementById('subsList');
   const fEv=document.getElementById('filterEvento').value;
   const fMod=document.getElementById('filterModalidade').value;
-  let subs=DB.submissoes;
+  // CORREÇÃO: fallback para array vazio
+  let subs=DB.submissoes||[];
   if(fEv) subs=subs.filter(s=>s.eventoId===fEv);
   if(fMod) subs=subs.filter(s=>s.modal===fMod);
   if(!subs.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px;padding:1rem 0">Nenhuma submissão encontrada.</div>';return;}
   el.innerHTML=subs.map(s=>{
-    const ev=DB.eventos.find(e=>e.id===s.eventoId);
-    const avs=DB.avaliacoes.filter(a=>a.subId===s.id);
+    const ev=(DB.eventos||[]).find(e=>e.id===s.eventoId);
+    // CORREÇÃO: fallback
+    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
     const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
     const avg=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2):'—';
     const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
@@ -1240,16 +1267,18 @@ function analyzeTensivity(text){
 // ════════════════════════════════════════
 function populateEvalSelect(){
   const sel=document.getElementById('selectSubToEval');const cur=sel.value;
-  sel.innerHTML='<option value="">—</option>'+DB.submissoes.map(s=>{const ev=DB.eventos.find(e=>e.id===s.eventoId);return`<option value="${s.id}">${s.titulo} — ${s.autor} (${ev?ev.nome:'?'})</option>`;}).join('');
+  // CORREÇÃO: fallback
+sel.innerHTML='<option value="">—</option>'+(DB.submissoes||[]).map(s=>{const ev=(DB.eventos||[]).find(e=>e.id===s.eventoId);return`<option value="${s.id}">${s.titulo} — ${s.autor} (${ev?ev.nome:'?'})</option>`;}).join('');
   if(cur) sel.value=cur;
 }
 function loadEvaluation(){
   const subId=document.getElementById('selectSubToEval').value;
   const cont=document.getElementById('evalContainer');
   if(!subId){cont.classList.add('hidden');return;}
-  const sub=DB.submissoes.find(s=>s.id===subId);if(!sub) return;
+  // CORREÇÃO: fallback
+  const sub=(DB.submissoes||[]).find(s=>s.id===subId);if(!sub) return;
   currentEvalSub=sub;
-  let ex=DB.avaliacoes.find(a=>a.subId===subId&&a.judgeId===currentUser.id);
+  let ex=(DB.avaliacoes||[]).find(a=>a.subId===subId&&a.judgeId===currentUser.id);
   if(ex) currentEvalData=JSON.parse(JSON.stringify(ex));
   else currentEvalData={subId,judgeId:currentUser.id,judgeName:currentUser.name,grammarErrors:analyzeGrammar(sub.texto,sub.lang),confirmedErrors:[],manualErrors:[],retQ:{},logQ:{},origQ:{},profQ:{},modalQ:{},tensivity:analyzeTensivity(sub.texto),finalScore:null};
   cont.classList.remove('hidden');
@@ -1413,6 +1442,8 @@ function finalizeEval(){
   currentEvalData.savedAt=new Date().toISOString();
   const fbEl=document.getElementById('evalFeedback');
   if(fbEl) currentEvalData.feedback=fbEl.value.trim();
+  // CORREÇÃO: garante array antes de findIndex
+  if(!Array.isArray(DB.avaliacoes)) DB.avaliacoes=[];
   const idx=DB.avaliacoes.findIndex(a=>a.subId===currentEvalData.subId&&a.judgeId===currentUser.id);
   if(idx>=0)DB.avaliacoes[idx]=JSON.parse(JSON.stringify(currentEvalData));
   else DB.avaliacoes.push(JSON.parse(JSON.stringify(currentEvalData)));
@@ -1426,11 +1457,13 @@ function finalizeEval(){
 // ════════════════════════════════════════
 function populateRankingSelect(){
   const sel=document.getElementById('rankingEvento');
-  sel.innerHTML='<option value="">—</option>'+DB.eventos.map(e=>`<option value="${e.id}">${e.nome}${e.finalized?' ✦':''}</option>`).join('');
+  // CORREÇÃO: fallback
+sel.innerHTML='<option value="">—</option>'+(DB.eventos||[]).map(e=>`<option value="${e.id}">${e.nome}${e.finalized?' ✦':''}</option>`).join('');
 }
 function getRanked(evId){
-  return DB.submissoes.filter(s=>s.eventoId===evId).map(s=>{
-    const avs=DB.avaliacoes.filter(a=>a.subId===s.id&&a.judgeId!=='admin');
+  // CORREÇÃO: fallback
+  return (DB.submissoes||[]).filter(s=>s.eventoId===evId).map(s=>{
+    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id&&a.judgeId!=='admin');
     const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
     return{...s,avg:sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null,avCount:avs.length};
   }).filter(s=>s.avg!=null).sort((a,b)=>b.avg-a.avg);
@@ -1491,7 +1524,8 @@ function authCert(){
   populateCertSelect();renderCertList();
 }
 function setCertPass(){const np=document.getElementById('newCertPass').value.trim();if(!np)return;DB.certPass=np;saveDB();document.getElementById('newCertPass').value='';const ok=document.getElementById('certPassOk');ok.classList.remove('hidden');setTimeout(()=>ok.classList.add('hidden'),2500);}
-function populateCertSelect(){const sel=document.getElementById('certEvento');sel.innerHTML='<option value="">—</option>'+DB.eventos.map(e=>`<option value="${e.nome}">${e.nome}</option>`).join('');}
+function populateCertSelect(){const sel=document.getElementById('certEvento');// CORREÇÃO: fallback
+sel.innerHTML='<option value="">—</option>'+(DB.eventos||[]).map(e=>`<option value="${e.nome}">${e.nome}</option>`).join('');}
 function previewCert(){
   const ev=document.getElementById('certEvento').value,pos=document.getElementById('certPosicao').value;
   const nome=document.getElementById('certNome').value.trim(),obra=document.getElementById('certObra').value.trim();
@@ -1536,7 +1570,8 @@ function downloadCert(){
 function renderCertList(){
   const el=document.getElementById('certList');
   if(!DB.emitidos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:22px">Nenhum certificado emitido.</div>';return;}
-  el.innerHTML=`<table><thead><tr><th>Evento</th><th>Posição</th><th>Nome</th><th>Obra</th><th>Data</th></tr></thead><tbody>`+DB.emitidos.map(c=>`<tr><td>${c.evento}</td><td><span class="badge ${c.posicao==='1'?'badge-gold':c.posicao==='2'?'badge-silver':'badge-bronze'}">${c.posicao}º</span></td><td style="color:var(--text)">${c.nome}</td><td>${c.obra}</td><td style="font-size:20px">${c.data}</td></tr>`).join('')+`</tbody></table>`;
+  // CORREÇÃO: fallback
+  el.innerHTML=`<table><thead><tr><th>Evento</th><th>Posição</th><th>Nome</th><th>Obra</th><th>Data</th></tr></thead><tbody>`+(DB.emitidos||[]).map(c=>`<tr><td>${c.evento}</td><td><span class="badge ${c.posicao==='1'?'badge-gold':c.posicao==='2'?'badge-silver':'badge-bronze'}">${c.posicao}º</span></td><td style="color:var(--text)">${c.nome}</td><td>${c.obra}</td><td style="font-size:20px">${c.data}</td></tr>`).join('')+`</tbody></table>`;
 }
 
 // ════════════════════════════════════════
@@ -1572,7 +1607,8 @@ function openPublicView(evId){
 
 function renderPublicViewContent(evId){
   const ev=DB.eventos.find(e=>e.id===evId);
-  const subs=DB.submissoes.filter(s=>s.eventoId===evId);
+  // CORREÇÃO: fallback
+  const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
   const ranked=getRanked(evId);
   const cont=document.getElementById('pubModalContent');
 
@@ -1589,7 +1625,8 @@ function renderPublicViewContent(evId){
     ranked.forEach((s,i)=>{
       const medal=i<3?medals[i]:`${i+1}º`;
       const starKey=`${evId}_${s.id}`;
-      const myRating=DB.starRatings[starKey]||0;
+      // CORREÇÃO: fallback starRatings
+      const myRating=(DB.starRatings||{})[starKey]||0;
       const avgStars=calcAvgStars(starKey);
       const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
       // Score breakdown per category
@@ -1624,7 +1661,8 @@ function renderPublicViewContent(evId){
     subs.filter(s=>!ranked.find(r=>r.id===s.id)||(ranked.findIndex(r=>r.id===s.id)>=3)).forEach(s=>{
       const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
       const starKey=`${evId}_${s.id}`;
-      const myRating=DB.starRatings[starKey]||0;
+      // CORREÇÃO: fallback starRatings
+      const myRating=(DB.starRatings||{})[starKey]||0;
       const avgStars=calcAvgStars(starKey);
       html+=`<div class="pub-card">
         <div style="display:flex;align-items:center;gap:10px">
@@ -1644,7 +1682,8 @@ function renderPublicViewContent(evId){
     // EVENT IN PROGRESS: show participant their own score breakdown only
     html+=`<div style="font-size:24px;font-family:var(--font-sans);color:var(--text2);margin-bottom:1rem">O evento ainda está em andamento. As notas completas serão reveladas após a finalização.</div>`;
     subs.forEach(s=>{
-      const avs=DB.avaliacoes.filter(a=>a.subId===s.id);
+      // CORREÇÃO: fallback
+      const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
       const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null;
       const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
@@ -1663,7 +1702,9 @@ function renderPublicViewContent(evId){
 
 function buildScoreBreakdown(sub,avs){
   // Collect feedbacks from all judges
-  const judgeAvs=avs.filter(a=>a.judgeId!=='admin');
+  // CORREÇÃO: garante que avs é array
+  const _avsSafe=Array.isArray(avs)?avs:[];
+  const judgeAvs=_avsSafe.filter(a=>a.judgeId!=='admin');
   const feedbacks=judgeAvs.filter(a=>a.feedback&&a.feedback.trim()).map(a=>({judge:a.judgeName,text:a.feedback}));
   if(!avs.length) return '';
   // Average scores per category across all judges
@@ -1701,6 +1742,8 @@ function calcAvgStars(key){
   return vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
 }
 function rateStar(key,val,evId){
+  // CORREÇÃO: garante que DB.starRatings existe
+  if(!DB.starRatings||typeof DB.starRatings!=='object') DB.starRatings={};
   if(!DB.starRatings[key]||typeof DB.starRatings[key]!=='object') DB.starRatings[key]={};
   const userId=currentUser?currentUser.id:'anon_'+Math.random().toString(36).substr(2,5);
   DB.starRatings[key][userId]=val;
@@ -1720,7 +1763,8 @@ function renderRevisao(){
     return;
   }
   const evFilter=document.getElementById('revisaoEvFilter')?document.getElementById('revisaoEvFilter').value:'';
-  let subs=DB.submissoes;
+  // CORREÇÃO: fallback
+  let subs=DB.submissoes||[];
   if(evFilter) subs=subs.filter(s=>s.eventoId===evFilter);
   const list=document.getElementById('revisaoList');
   if(!subs.length){list.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px">Nenhuma submissão encontrada.</div>';return;}
@@ -1728,7 +1772,8 @@ function renderRevisao(){
   let html='';
   subs.forEach(sub=>{
     const ev=DB.eventos.find(e=>e.id===sub.eventoId);
-    const avs=DB.avaliacoes.filter(a=>a.subId===sub.id&&a.judgeId!=='admin');
+    // CORREÇÃO: fallback
+    const avs=(DB.avaliacoes||[]).filter(a=>a.subId===sub.id&&a.judgeId!=='admin');
     const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
     const avg=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2):'—';
     const mB=sub.modal==='poesia'?'badge-gold':sub.modal==='cronica'?'badge-blue':'badge-green';
@@ -1803,7 +1848,8 @@ function confirmReviewScore(subId,judgeId){
   if(!inp) return;
   const val=parseFloat(inp.value);
   if(isNaN(val)||val<0||val>10){alert('Nota deve ser entre 0 e 10.');return;}
-  const av=DB.avaliacoes.find(a=>a.subId===subId&&a.judgeId===judgeId);
+  // CORREÇÃO: fallback
+  const av=(DB.avaliacoes||[]).find(a=>a.subId===subId&&a.judgeId===judgeId);
   if(av){av.finalScore=parseFloat(val.toFixed(2));saveDB();alert(`Nota de ${av.judgeName||judgeId} confirmada: ${val.toFixed(2)}`);}
 }
 
@@ -1816,8 +1862,10 @@ function renderPublicoPage(){
   let html=`<div style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;margin-bottom:1.5rem">
     Cada evento gera um link único para o ambiente do participante. O participante acessa diretamente — sem senha — e pode ver todas as obras, notas e certificados.
   </div>`;
-  html+=DB.eventos.map(ev=>{
-    const subs=DB.submissoes.filter(s=>s.eventoId===ev.id).length;
+  // CORREÇÃO: fallback
+  // CORREÇÃO: já tem fallback, garante DB.eventos também
+  html+=(Array.isArray(DB.eventos)?DB.eventos:[]).map(ev=>{
+    const subs=(Array.isArray(DB.submissoes)?DB.submissoes:[]).filter(s=>s.eventoId===ev.id).length;
     const pubUrl=window.location.href.split('?')[0]+'?pub='+ev.token;
     return`<div class="pub-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
@@ -1849,7 +1897,8 @@ function openParticipantPortal(evId){
 
 function buildParticipantPortalHTML(evId){
   const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return '';
-  const subs=DB.submissoes.filter(s=>s.eventoId===evId);
+  // CORREÇÃO: fallback
+  const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
   const ranked=getRanked(evId);
   const TIER_CSS={'none':'color:var(--text3)','acolito_madeira':'color:#a0785a','acolito_ferro':'color:#8a9aa8','acolito_chumbo':'color:#7a7a8a','veterano_bronze':'color:#d4864a','veterano_prata':'color:#c0c0c0','veterano_ouro':'color:var(--gold2)','escritor_topazio':'color:#f0c860','escritor_turmalina':'color:#c070c8','escritor_safira':'color:#60a0f0','escritor_rubi':'color:#f06060','escritor_esmeralda':'color:#50c878','escritor_diamante':'color:#b8f0ff'};
 
@@ -1866,7 +1915,8 @@ function buildParticipantPortalHTML(evId){
       const tier=getTier(((DB.participants||{})[s.autor]||{}).tierId||'none');
       const tierCss=TIER_CSS[tier.id]||'color:var(--text3)';
       // Individual judge scores
-      const judgeAvs=DB.avaliacoes.filter(a=>a.subId===s.id&&a.judgeId!=='admin');
+      // CORREÇÃO: fallback
+      const judgeAvs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id&&a.judgeId!=='admin');
       const judgeScoreHTML=judgeAvs.map(av=>`<span class="judge-score-pill">${av.judgeName||av.judgeId}: <strong style="color:var(--gold)">${av.finalScore!=null?av.finalScore.toFixed(2):'—'}</strong></span>`).join('');
       html+=`<div class="pub-card" style="border-color:rgba(201,168,76,0.35);margin-bottom:0.875rem">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
@@ -1901,7 +1951,8 @@ function buildParticipantPortalHTML(evId){
   else{
     subs.forEach(s=>{
       const isRanked=ranked.find(r=>r.id===s.id);
-      const judgeAvs=DB.avaliacoes.filter(a=>a.subId===s.id&&a.judgeId!=='admin');
+      // CORREÇÃO: fallback
+      const judgeAvs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id&&a.judgeId!=='admin');
       const sc=judgeAvs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null;
       const tier=getTier(((DB.participants||{})[s.autor]||{}).tierId||'none');
@@ -2857,7 +2908,8 @@ window.addEventListener('DOMContentLoaded',()=>{
   const _urlP=new URLSearchParams(window.location.search);
   const _pubToken=_urlP.get('pub');
   if(_pubToken){
-    const _ev=DB.eventos.find(e=>e.token===_pubToken);
+    // CORREÇÃO: fallback
+    const _ev=(DB.eventos||[]).find(e=>e.token===_pubToken);
     if(_ev){
       // Show only the participant portal, no login required
       document.getElementById('loginScreen').classList.add('hidden');
