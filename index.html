@@ -4,6 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Veritas Literário</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>">
+<meta name="description" content="Sistema de avaliação literária — concursos, submissões e rankings com critérios profissionais.">
+<meta property="og:title" content="Veritas Literário">
+<meta property="og:description" content="Sistema de avaliação literária — concursos, submissões e rankings com critérios profissionais.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#c9a84c">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;600&family=Source+Sans+3:wght@300;400;600&family=Lora:ital,wght@0,400;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
@@ -35,21 +41,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .sidebar-banner{width:100%;cursor:pointer;}
 .sidebar-banner img{width:100%;display:block;max-height:80px;object-fit:cover;object-position:center 30%;}
 .sidebar-logo{padding:0.6rem 1rem 0.75rem;text-align:center;border-bottom:1px solid var(--border);}
-.sidebar-logo::after{content:'✦ ✦ ✦';display:block;font-size:14px;color:var(--gold);letter-spacing:6px;margin-top:6px;opacity:0.5;}
-.sidebar-logo h1{font-family:var(--font-display);font-size:34px;font-weight:600;letter-spacing:0.12em;color:var(--gold2);}
-.sidebar-logo a{display:block;font-size:24px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-decoration:none;margin-top:3px;transition:color 0.15s;}
+.sidebar-logo::after{content:'✦ ✦ ✦';display:block;font-size:10px;color:var(--gold);letter-spacing:6px;margin-top:6px;opacity:0.5;}
+.sidebar-logo h1{font-family:var(--font-display);font-size:26px;font-weight:600;letter-spacing:0.12em;color:var(--gold2);}
+.sidebar-logo a{display:block;font-size:18px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-decoration:none;margin-top:3px;transition:color 0.15s;}
 .sidebar-logo a:hover{color:var(--gold);}
 .nav{padding:0.5rem 0;flex:1;}
-.nav-item{display:flex;align-items:center;gap:10px;padding:0.6rem 1.1rem;cursor:pointer;font-size:30px;font-family:var(--font-sans);color:var(--text3);transition:all 0.2s;border-left:2px solid transparent;letter-spacing:0.04em;}
+.nav-item{display:flex;align-items:center;gap:10px;padding:0.6rem 1.1rem;cursor:pointer;font-size:22px;font-family:var(--font-sans);color:var(--text3);transition:all 0.2s;border-left:2px solid transparent;letter-spacing:0.04em;}
 .nav-item:hover{color:var(--text2);background:rgba(201,168,76,0.04);border-left-color:rgba(201,168,76,0.3);}
 .nav-item.active{color:var(--gold2);border-left-color:var(--gold);background:rgba(201,168,76,0.07);}
 .nav-icon{width:18px;height:18px;flex-shrink:0;opacity:0.7;}
 .nav-item.active .nav-icon{opacity:1;}
 .nav-divider{height:1px;background:var(--border);margin:0.4rem 0.875rem;}
 .sidebar-user{padding:0.75rem 1.1rem;border-top:1px solid var(--border);font-family:var(--font-sans);background:rgba(0,0,0,0.2);}
-.user-name{color:var(--gold2);font-size:32px;font-weight:600;}
-.user-role{color:var(--text3);font-size:26px;text-transform:uppercase;letter-spacing:0.1em;margin-top:1px;}
-.logout-btn{margin-top:6px;background:none;border:1px solid var(--border);color:var(--text3);padding:4px 11px;border-radius:var(--radius);font-size:24px;cursor:pointer;font-family:var(--font-sans);transition:all 0.15s;}
+.user-name{color:var(--gold2);font-size:24px;font-weight:600;}
+.user-role{color:var(--text3);font-size:20px;text-transform:uppercase;letter-spacing:0.1em;margin-top:1px;}
+.logout-btn{margin-top:6px;background:none;border:1px solid var(--border);color:var(--text3);padding:4px 11px;border-radius:var(--radius);font-size:18px;cursor:pointer;font-family:var(--font-sans);transition:all 0.15s;}
 .logout-btn:hover{border-color:var(--crimson);color:var(--crimson2);}
 
 /* MAIN */
@@ -58,8 +64,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .page.active{display:block;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .page-header{margin-bottom:1.5rem;padding-bottom:0.875rem;border-bottom:1px solid var(--border);}
-.page-title{font-family:var(--font-display);font-size:44px;font-weight:600;color:var(--gold2);letter-spacing:0.08em;margin-bottom:0.15rem;}
-.page-sub{font-size:28px;color:var(--text3);font-family:var(--font-sans);}
+.page-title{font-family:var(--font-display);font-size:33px;font-weight:600;color:var(--gold2);letter-spacing:0.08em;margin-bottom:0.15rem;}
+.page-sub{font-size:21px;color:var(--text3);font-family:var(--font-sans);}
 
 /* LOGIN */
 .login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;z-index:1;background:radial-gradient(ellipse 70% 60% at 20% 50%,rgba(120,35,10,0.22) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 80% 30%,rgba(50,20,5,0.2) 0%,transparent 55%),var(--bg);}
@@ -67,37 +73,37 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .login-banner{width:100%;border-radius:var(--radius-lg) var(--radius-lg) 0 0;overflow:hidden;margin-bottom:1.25rem;}
 .login-banner img{width:100%;display:block;max-height:90px;object-fit:cover;object-position:center 25%;}
 .login-logo{text-align:center;margin-bottom:1.5rem;}
-.login-logo h2{font-family:var(--font-display);font-size:42px;font-weight:600;color:var(--gold2);letter-spacing:0.15em;}
-.login-logo p{font-size:18px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.25em;text-transform:uppercase;margin-top:3px;}
-.login-logo .deco{color:var(--gold);font-size:18px;letter-spacing:10px;margin:8px 0;opacity:0.5;}
+.login-logo h2{font-family:var(--font-display);font-size:32px;font-weight:600;color:var(--gold2);letter-spacing:0.15em;}
+.login-logo p{font-size:14px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.25em;text-transform:uppercase;margin-top:3px;}
+.login-logo .deco{color:var(--gold);font-size:14px;letter-spacing:10px;margin:8px 0;opacity:0.5;}
 
 /* FORMS */
-label{font-size:24px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:4px;}
-input,select,textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);padding:8px 12px;font-size:30px;font-family:var(--font-serif);outline:none;transition:border 0.15s,background 0.15s;}
+label{font-size:18px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:4px;}
+input,select,textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border2);border-radius:var(--radius);color:var(--text);padding:8px 12px;font-size:22px;font-family:var(--font-serif);outline:none;transition:border 0.15s,background 0.15s;}
 input:focus,select:focus,textarea:focus{border-color:var(--gold);background:rgba(201,168,76,0.03);}
 select option{background:var(--bg3);}
 textarea{resize:vertical;min-height:90px;}
 .form-group{margin-bottom:1rem;}
-.btn{padding:8px 18px;border-radius:var(--radius);border:1px solid var(--border2);background:none;color:var(--text2);font-size:24px;font-family:var(--font-sans);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
+.btn{padding:8px 18px;border-radius:var(--radius);border:1px solid var(--border2);background:none;color:var(--text2);font-size:18px;font-family:var(--font-sans);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
 .btn:hover{background:rgba(255,255,255,0.05);color:var(--text);}
 .btn-primary{background:var(--gold);border-color:var(--gold);color:#0a0804;font-weight:600;}
 .btn-primary:hover{background:var(--gold2);border-color:var(--gold2);}
 .btn-danger{border-color:rgba(181,34,34,0.5);color:var(--crimson2);}
 .btn-danger:hover{background:rgba(181,34,34,0.1);}
-.btn-sm{padding:5px 13px;font-size:26px;}
+.btn-sm{padding:5px 13px;font-size:20px;}
 .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:0.875rem;}
 
 /* CARDS */
 .card{background:linear-gradient(160deg,rgba(22,18,13,0.9) 0%,rgba(16,13,10,0.95) 100%);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;margin-bottom:0.875rem;position:relative;transition:border-color 0.2s;}
 .card:hover{border-color:var(--border2);}
 .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.75rem;}
-.card-title{font-family:var(--font-display);font-size:30px;color:var(--gold2);letter-spacing:0.04em;}
-.card-sub{font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
+.card-title{font-family:var(--font-display);font-size:22px;color:var(--gold2);letter-spacing:0.04em;}
+.card-sub{font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
 .card-champion{border-color:var(--gold);background:linear-gradient(160deg,rgba(30,22,8,0.95) 0%,rgba(18,13,5,0.98) 100%);box-shadow:0 0 30px rgba(201,168,76,0.06);}
 .card-champion::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);border-radius:var(--radius-lg) var(--radius-lg) 0 0;}
 
 /* BADGES */
-.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:4px;font-size:24px;font-family:var(--font-sans);font-weight:600;letter-spacing:0.04em;}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:4px;font-size:18px;font-family:var(--font-sans);font-weight:600;letter-spacing:0.04em;}
 .badge-gold{background:rgba(201,168,76,0.15);color:var(--gold2);border:1px solid rgba(201,168,76,0.35);}
 .badge-silver{background:rgba(180,180,180,0.1);color:#c0bfbb;border:1px solid rgba(180,180,180,0.25);}
 .badge-bronze{background:rgba(180,110,50,0.15);color:#d4864a;border:1px solid rgba(180,110,50,0.3);}
@@ -108,8 +114,8 @@ textarea{resize:vertical;min-height:90px;}
 .badge-champion{background:linear-gradient(90deg,rgba(201,168,76,0.2),rgba(248,215,120,0.15));color:var(--gold3);border:1px solid rgba(201,168,76,0.5);font-family:var(--font-display);letter-spacing:0.08em;}
 
 /* TABLES */
-table{width:100%;border-collapse:collapse;font-size:28px;font-family:var(--font-sans);}
-th{text-align:left;padding:8px 12px;color:var(--text3);font-size:24px;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border);font-weight:400;}
+table{width:100%;border-collapse:collapse;font-size:21px;font-family:var(--font-sans);}
+th{text-align:left;padding:8px 12px;color:var(--text3);font-size:18px;letter-spacing:0.1em;text-transform:uppercase;border-bottom:1px solid var(--border);font-weight:400;}
 td{padding:10px 12px;border-bottom:1px solid rgba(180,140,60,0.06);color:var(--text2);vertical-align:middle;}
 tr:last-child td{border-bottom:none;}
 tr:hover td{background:rgba(201,168,76,0.02);}
@@ -119,20 +125,20 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:0.75rem;}
 .stat{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:0.875rem;text-align:center;}
-.stat-val{font-size:44px;color:var(--gold);font-family:var(--font-display);}
-.stat-lbl{font-size:20px;color:var(--text3);font-family:var(--font-sans);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
+.stat-val{font-size:33px;color:var(--gold);font-family:var(--font-display);}
+.stat-lbl{font-size:15px;color:var(--text3);font-family:var(--font-sans);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px;}
 
 /* EVAL */
 .eval-section{background:rgba(18,14,10,0.8);border:1px solid var(--border);border-radius:var(--radius-lg);margin-bottom:1.1rem;overflow:hidden;}
 .eval-section-header{background:rgba(12,9,6,0.8);padding:0.8rem 1.1rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-.eval-section-title{font-family:var(--font-display);font-size:28px;color:var(--gold2);letter-spacing:0.06em;}
-.eval-section-score{font-size:38px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
+.eval-section-title{font-family:var(--font-display);font-size:21px;color:var(--gold2);letter-spacing:0.06em;}
+.eval-section-score{font-size:28px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
 .eval-section-body{padding:1rem 1.1rem;}
 .question-row{display:flex;align-items:flex-start;gap:0.875rem;padding:0.6rem 0;border-bottom:1px solid rgba(180,140,60,0.05);}
 .question-row:last-child{border-bottom:none;}
-.question-text{flex:1;font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.5;}
+.question-text{flex:1;font-size:21px;color:var(--text2);font-family:var(--font-sans);line-height:1.5;}
 .question-options{display:flex;gap:3px;flex-shrink:0;}
-.q-opt{padding:5px 9px;border:1px solid var(--border2);border-radius:3px;font-size:26px;cursor:pointer;font-family:var(--font-sans);background:none;color:var(--text3);transition:all 0.12s;white-space:nowrap;}
+.q-opt{padding:5px 9px;border:1px solid var(--border2);border-radius:3px;font-size:20px;cursor:pointer;font-family:var(--font-sans);background:none;color:var(--text3);transition:all 0.12s;white-space:nowrap;}
 .q-opt:hover{border-color:var(--gold);color:var(--gold);}
 .q-opt.sel-MA{background:rgba(58,138,80,0.2);border-color:#3a8a50;color:#5ab870;}
 .q-opt.sel-BA{background:rgba(58,138,80,0.12);border-color:#3a8a50;color:#5ab870;}
@@ -142,52 +148,52 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 
 /* GRAMMAR */
 .error-item{display:flex;align-items:flex-start;gap:9px;padding:9px 11px;border-radius:var(--radius);background:rgba(255,255,255,0.02);margin-bottom:5px;border:1px solid var(--border);}
-.error-item .err-text{flex:1;color:var(--text2);font-family:var(--font-sans);font-size:22px;}
+.error-item .err-text{flex:1;color:var(--text2);font-family:var(--font-sans);font-size:16px;}
 .error-check{width:14px;height:14px;cursor:pointer;margin-top:2px;flex-shrink:0;accent-color:var(--gold);}
 .error-confirmed{opacity:0.4;}
 
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.82);display:flex;align-items:center;justify-content:center;z-index:200;backdrop-filter:blur(2px);}
 .modal{background:linear-gradient(160deg,rgba(22,17,12,0.99) 0%,rgba(14,11,8,1) 100%);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:1.75rem;width:600px;max-width:95vw;max-height:88vh;overflow-y:auto;box-shadow:0 30px 80px rgba(0,0,0,0.8);}
-.modal h3{font-family:var(--font-display);font-size:30px;color:var(--gold2);font-weight:600;letter-spacing:0.08em;margin-bottom:1.25rem;}
-.modal-close{float:right;background:none;border:none;color:var(--text3);cursor:pointer;font-size:32px;margin-top:-2px;transition:color 0.15s;}
+.modal h3{font-family:var(--font-display);font-size:22px;color:var(--gold2);font-weight:600;letter-spacing:0.08em;margin-bottom:1.25rem;}
+.modal-close{float:right;background:none;border:none;color:var(--text3);cursor:pointer;font-size:24px;margin-top:-2px;transition:color 0.15s;}
 .modal-close:hover{color:var(--crimson2);}
 .hidden{display:none!important;}
 
 /* ALERT */
-.alert{padding:8px 12px;border-radius:var(--radius);font-family:var(--font-sans);font-size:22px;margin-bottom:0.875rem;}
+.alert{padding:8px 12px;border-radius:var(--radius);font-family:var(--font-sans);font-size:16px;margin-bottom:0.875rem;}
 .alert-warn{background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);color:var(--gold2);}
 .alert-err{background:rgba(181,34,34,0.08);border:1px solid rgba(181,34,34,0.3);color:#e06060;}
 .alert-ok{background:rgba(58,138,80,0.08);border:1px solid rgba(58,138,80,0.3);color:#5ab870;}
-.text-preview{background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;font-size:26px;line-height:1.85;max-height:300px;overflow-y:auto;}
+.text-preview{background:rgba(255,255,255,0.015);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;font-size:20px;line-height:1.85;max-height:300px;overflow-y:auto;}
 .text-preview p{margin-bottom:0.65rem;}
 
 /* RANKING */
 .rank-entry{display:flex;align-items:center;gap:0.875rem;padding:0.8rem 0.9rem;border-bottom:1px solid var(--border);transition:background 0.15s;}
 .rank-entry:hover{background:rgba(201,168,76,0.02);}
 .rank-entry:last-child{border-bottom:none;}
-.rank-medal{font-size:40px;width:32px;text-align:center;flex-shrink:0;}
+.rank-medal{font-size:30px;width:32px;text-align:center;flex-shrink:0;}
 .rank-info{flex:1;min-width:0;}
-.rank-title-obra{font-size:28px;color:var(--text);font-family:var(--font-serif);}
-.rank-meta{font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
-.rank-score-big{font-size:42px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
-.champion-banner{background:linear-gradient(90deg,rgba(139,26,26,0.3),rgba(201,168,76,0.15),rgba(139,26,26,0.3));border:1px solid var(--gold);border-radius:var(--radius);padding:0.65rem 1.1rem;text-align:center;font-family:var(--font-display);font-size:24px;color:var(--gold3);letter-spacing:0.12em;margin-bottom:0.875rem;}
+.rank-title-obra{font-size:21px;color:var(--text);font-family:var(--font-serif);}
+.rank-meta{font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
+.rank-score-big{font-size:32px;color:var(--gold);font-family:var(--font-sans);font-weight:300;}
+.champion-banner{background:linear-gradient(90deg,rgba(139,26,26,0.3),rgba(201,168,76,0.15),rgba(139,26,26,0.3));border:1px solid var(--gold);border-radius:var(--radius);padding:0.65rem 1.1rem;text-align:center;font-family:var(--font-display);font-size:18px;color:var(--gold3);letter-spacing:0.12em;margin-bottom:0.875rem;}
 
 /* TENSIVITY */
 .tensiv-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .tensiv-meter{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:0.875rem;}
-.tensiv-label{font-size:24px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px;}
-.tensiv-val{font-size:64px;color:var(--gold);text-align:center;font-family:var(--font-display);}
-.tensiv-desc{font-size:24px;color:var(--text3);font-family:var(--font-sans);text-align:center;margin-top:2px;}
+.tensiv-label{font-size:18px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px;}
+.tensiv-val{font-size:48px;color:var(--gold);text-align:center;font-family:var(--font-display);}
+.tensiv-desc{font-size:18px;color:var(--text3);font-family:var(--font-sans);text-align:center;margin-top:2px;}
 .tensiv-segs{display:flex;gap:3px;margin-top:8px;}
 .tensiv-seg{flex:1;height:5px;border-radius:2px;background:rgba(255,255,255,0.04);}
 .tensiv-seg.on{background:var(--gold);}
 
 /* CERT */
 .cert-box{background:linear-gradient(160deg,rgba(22,17,10,0.98) 0%,rgba(14,11,6,1) 100%);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:2rem;max-width:600px;margin:1.25rem auto;text-align:center;box-shadow:0 0 30px rgba(201,168,76,0.07);}
-.cert-deco{color:var(--gold);opacity:0.5;font-size:32px;letter-spacing:10px;margin:0.6rem 0;}
-.cert-name-line{font-family:var(--font-display);font-size:48px;color:var(--gold3);margin:0.65rem 0;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:5px;}
-.cert-pos{font-family:var(--font-display);font-size:32px;color:var(--gold2);letter-spacing:0.1em;}
+.cert-deco{color:var(--gold);opacity:0.5;font-size:24px;letter-spacing:10px;margin:0.6rem 0;}
+.cert-name-line{font-family:var(--font-display);font-size:36px;color:var(--gold3);margin:0.65rem 0;border-bottom:1px solid rgba(201,168,76,0.3);padding-bottom:5px;}
+.cert-pos{font-family:var(--font-display);font-size:24px;color:var(--gold2);letter-spacing:0.1em;}
 
 /* TIER COLORS */
 .tc-none{color:var(--text3)}
@@ -197,22 +203,22 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .tc-escritor_rubi{color:#f06060}.tc-escritor_esmeralda{color:#50c878}.tc-escritor_diamante{color:#b8f0ff}
 
 /* STARS */
-.stars{display:flex;gap:3px;}.star{font-size:36px;cursor:pointer;color:var(--text3);transition:color 0.1s;}.star.on{color:var(--gold2);}
+.stars{display:flex;gap:3px;}.star{font-size:27px;cursor:pointer;color:var(--text3);transition:color 0.1s;}.star.on{color:var(--gold2);}
 
 /* PUBLIC VIEW */
 .pub-card{background:rgba(22,18,13,0.85);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem;margin-bottom:1rem;}
 .pub-score-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.75rem;}
-.pub-score-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:22px;font-family:var(--font-sans);}
+.pub-score-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:4px;padding:4px 10px;font-size:16px;font-family:var(--font-sans);}
 .pub-score-item span{color:var(--gold);font-weight:600;}
 
 /* CUSTOMIZER */
 .custom-section{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;margin-bottom:1rem;}
-.custom-section-title{font-family:var(--font-display);font-size:24px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;}
-.font-option{padding:5px 12px;border:1px solid var(--border2);border-radius:4px;cursor:pointer;font-size:26px;color:var(--text2);background:none;transition:all 0.15s;}
+.custom-section-title{font-family:var(--font-display);font-size:18px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;}
+.font-option{padding:5px 12px;border:1px solid var(--border2);border-radius:4px;cursor:pointer;font-size:20px;color:var(--text2);background:none;transition:all 0.15s;}
 .font-option:hover,.font-option.selected{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,0.06);}
 .color-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:border-color 0.15s;}
 .color-swatch:hover,.color-swatch.selected{border-color:var(--gold3);}
-.upload-area{border:1px dashed var(--border2);border-radius:var(--radius);padding:1rem;text-align:center;cursor:pointer;transition:border-color 0.2s;font-family:var(--font-sans);font-size:24px;color:var(--text3);}
+.upload-area{border:1px dashed var(--border2);border-radius:var(--radius);padding:1rem;text-align:center;cursor:pointer;transition:border-color 0.2s;font-family:var(--font-sans);font-size:18px;color:var(--text3);}
 .upload-area:hover{border-color:var(--gold);color:var(--gold);}
 
 
@@ -221,7 +227,7 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .pixel-art-spot img{display:block;image-rendering:pixelated;}
 
 /* EVENT DETAIL TABS */
-.ev-tab{padding:8px 18px;background:none;border:none;border-bottom:2px solid transparent;font-family:var(--font-sans);font-size:28px;color:var(--text3);cursor:pointer;transition:all 0.15s;margin-bottom:-1px;}
+.ev-tab{padding:8px 18px;background:none;border:none;border-bottom:2px solid transparent;font-family:var(--font-sans);font-size:21px;color:var(--text3);cursor:pointer;transition:all 0.15s;margin-bottom:-1px;}
 .ev-tab:hover{color:var(--text2);}
 .ev-tab-active{color:var(--gold2);border-bottom-color:var(--gold);}
 
@@ -229,14 +235,14 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 .portal-page{min-height:100vh;background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(100,30,10,0.15) 0%,transparent 60%),var(--bg);padding:0;}
 .portal-header{background:linear-gradient(180deg,rgba(18,14,10,0.98),rgba(12,9,6,0.99));border-bottom:1px solid var(--border2);padding:1.25rem 2rem;display:flex;align-items:center;gap:1rem;}
 .portal-header img{max-height:48px;object-fit:cover;}
-.portal-header-title{font-family:var(--font-display);font-size:36px;color:var(--gold2);letter-spacing:0.08em;}
-.portal-header-ev{font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
+.portal-header-title{font-family:var(--font-display);font-size:27px;color:var(--gold2);letter-spacing:0.08em;}
+.portal-header-ev{font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px;}
 .portal-body{max-width:900px;margin:0 auto;padding:2rem 1.5rem;}
-.portal-section-title{font-family:var(--font-display);font-size:30px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+.portal-section-title{font-family:var(--font-display);font-size:22px;color:var(--gold2);letter-spacing:0.06em;margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
 .judge-score-row{display:flex;gap:0.5rem;flex-wrap:wrap;margin-top:0.5rem;}
-.judge-score-pill{padding:3px 10px;border-radius:20px;font-size:24px;font-family:var(--font-sans);border:1px solid var(--border2);color:var(--text2);}
+.judge-score-pill{padding:3px 10px;border-radius:20px;font-size:18px;font-family:var(--font-sans);border:1px solid var(--border2);color:var(--text2);}
 .score-bar-wrap{margin-bottom:5px;}
-.score-bar-label{display:flex;justify-content:space-between;font-size:24px;font-family:var(--font-sans);color:var(--text3);margin-bottom:3px;}
+.score-bar-label{display:flex;justify-content:space-between;font-size:18px;font-family:var(--font-sans);color:var(--text3);margin-bottom:3px;}
 .score-bar-track{height:7px;background:rgba(255,255,255,0.05);border-radius:4px;overflow:hidden;}
 .score-bar-fill{height:100%;border-radius:4px;transition:width 0.6s ease;}
 /* CERT REPO */
@@ -246,7 +252,128 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 /* REVIEW */
 .review-card{background:rgba(22,18,13,0.88);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.1rem;margin-bottom:0.875rem;}
 .review-judge-block{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:0.875rem;margin-top:0.75rem;}
-.review-score-input{width:80px;font-size:32px;text-align:center;background:rgba(201,168,76,0.07);border:1px solid var(--gold);color:var(--gold2);padding:4px 8px;}
+.review-score-input{width:80px;font-size:24px;text-align:center;background:rgba(201,168,76,0.07);border:1px solid var(--gold);color:var(--gold2);padding:4px 8px;}
+
+/* ── FULLSCREEN READER ── */
+#readerOverlay{display:none;position:fixed;inset:0;z-index:500;background:#0a0806;flex-direction:column;}
+#readerOverlay.open{display:flex;}
+.reader-topbar{display:flex;align-items:center;gap:10px;padding:10px 16px;background:rgba(12,9,6,0.98);border-bottom:1px solid var(--border2);flex-shrink:0;flex-wrap:wrap;}
+.reader-title{font-family:var(--font-display);font-size:15px;color:var(--gold2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.reader-controls{display:flex;align-items:center;gap:6px;}
+.reader-font-btn{background:rgba(255,255,255,0.06);border:1px solid var(--border2);color:var(--text2);border-radius:var(--radius);padding:3px 10px;cursor:pointer;font-size:16px;font-family:var(--font-sans);}
+.reader-font-btn:hover{background:rgba(201,168,76,0.1);color:var(--gold);}
+#readerBody{flex:1;overflow-y:auto;padding:2rem max(2rem, 10vw);position:relative;}
+.reader-text-wrap{max-width:700px;margin:0 auto;}
+.reader-text-wrap p{margin-bottom:1em;line-height:1.9;color:var(--text);position:relative;}
+/* page markers */
+.page-marker{display:flex;align-items:center;gap:8px;margin:1.5rem 0;opacity:0.5;}
+.page-marker-line{flex:1;height:1px;background:var(--gold);}
+.page-marker-label{font-family:var(--font-sans);font-size:11px;color:var(--gold);letter-spacing:0.12em;white-space:nowrap;}
+/* annotation highlight */
+.annotated-para{cursor:pointer;border-radius:3px;transition:background 0.15s;}
+.annotated-para:hover{background:rgba(201,168,76,0.07);}
+.annotated-para.has-note{border-left:3px solid var(--gold);padding-left:8px;}
+.annotation-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-left:5px;vertical-align:middle;cursor:pointer;flex-shrink:0;}
+/* annotation panel */
+.reader-annot-panel{width:280px;background:rgba(14,11,8,0.98);border-left:1px solid var(--border2);display:flex;flex-direction:column;flex-shrink:0;overflow:hidden;}
+.annot-panel-header{padding:12px 14px;border-bottom:1px solid var(--border);font-family:var(--font-display);font-size:13px;color:var(--gold2);}
+.annot-list{flex:1;overflow-y:auto;padding:8px;}
+.annot-item{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:var(--radius);padding:8px 10px;margin-bottom:6px;cursor:pointer;transition:border-color 0.15s;}
+.annot-item:hover{border-color:var(--gold);}
+.annot-item-page{font-size:10px;color:var(--gold);font-family:var(--font-sans);margin-bottom:3px;}
+.annot-item-text{font-size:12px;color:var(--text2);font-family:var(--font-serif);line-height:1.5;}
+.annot-item-note{font-size:11px;color:var(--text3);font-family:var(--font-sans);margin-top:4px;font-style:italic;}
+.annot-add-form{padding:10px;border-top:1px solid var(--border);flex-shrink:0;}
+/* annotation popup */
+#annotPopup{position:fixed;z-index:600;background:rgba(18,14,10,0.99);border:1px solid var(--gold);border-radius:var(--radius-lg);padding:12px;width:300px;box-shadow:0 8px 32px rgba(0,0,0,0.7);display:none;}
+#annotPopup.open{display:block;}
+/* ── BONUS SCORE ── */
+.bonus-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--radius);background:rgba(255,255,255,0.02);border:1px solid var(--border);margin-bottom:5px;}
+.bonus-score-badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:12px;font-weight:600;font-family:var(--font-sans);}
+/* ── PASSWORD CHANGE MODAL ── */
+#modalChangePass .modal{width:480px;}
+
+/* ── LOGIN ANIMATIONS ── */
+@keyframes loginFadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes loginLetters{from{opacity:0;letter-spacing:0.4em}to{opacity:1;letter-spacing:0.15em}}
+@keyframes ornamentPulse{0%,100%{opacity:0.35;transform:scaleX(0.7)}50%{opacity:0.8;transform:scaleX(1)}}
+@keyframes goldShimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+.login-box{animation:loginFadeUp 0.55s cubic-bezier(.22,1,.36,1) both;}
+.login-logo h2{animation:loginLetters 0.8s 0.2s cubic-bezier(.22,1,.36,1) both;}
+.login-ornament{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:10px auto;width:80%;animation:ornamentPulse 2.5s ease-in-out infinite;}
+.login-title-shimmer{background:linear-gradient(90deg,var(--gold2) 30%,var(--gold3) 50%,var(--gold2) 70%);
+  background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:goldShimmer 3s linear infinite;}
+
+/* ── FIREBASE STATUS INDICATOR ── */
+#fbStatusDot{width:8px;height:8px;border-radius:50%;background:#555;
+  transition:background 0.4s,box-shadow 0.4s;flex-shrink:0;}
+#fbStatusDot.online{background:#3a8a50;box-shadow:0 0 6px rgba(58,138,80,0.6);}
+#fbStatusDot.offline{background:#b52222;box-shadow:0 0 6px rgba(181,34,34,0.5);}
+#fbStatusBar{display:flex;align-items:center;gap:6px;padding:4px 10px;
+  border-top:1px solid var(--border);font-size:10px;font-family:var(--font-sans);color:var(--text3);}
+
+/* ── AUTOSAVE INDICATOR ── */
+#autosaveIndicator{font-size:11px;font-family:var(--font-sans);color:var(--text3);
+  padding:3px 8px;border-radius:var(--radius);transition:all 0.3s;opacity:0;}
+#autosaveIndicator.saving{opacity:1;color:var(--gold);background:rgba(201,168,76,0.08);}
+#autosaveIndicator.saved{opacity:1;color:#5ab870;background:rgba(58,138,80,0.08);}
+@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+#autosaveIndicator.fadeout{animation:fadeOut 1.5s 2s forwards;}
+
+/* ── ALCHEMICAL PHRASE — PROMINENT ── */
+.alch-phrase{font-family:var(--font-serif);font-style:italic;font-size:13px;
+  color:var(--gold2);margin-top:5px;letter-spacing:0.02em;line-height:1.4;
+  display:flex;align-items:center;gap:6px;}
+.alch-phrase::before{content:'✦';font-style:normal;font-size:9px;opacity:0.6;flex-shrink:0;}
+
+/* ── RANKING ANIMATION ── */
+@keyframes rankReveal{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+@keyframes podiumGlow{0%{box-shadow:0 0 0 rgba(201,168,76,0)}50%{box-shadow:0 0 24px rgba(201,168,76,0.18)}100%{box-shadow:0 0 8px rgba(201,168,76,0.08)}}
+.rank-entry{animation:rankReveal 0.35s ease both;}
+.rank-entry.podium-1{border-left:3px solid var(--gold);animation:rankReveal 0.4s ease both,podiumGlow 2s 0.4s ease both;}
+.rank-entry.podium-2{border-left:3px solid #c0c0c0;}
+.rank-entry.podium-3{border-left:3px solid #d4864a;}
+.rank-entry:nth-child(1){animation-delay:0.05s}
+.rank-entry:nth-child(2){animation-delay:0.15s}
+.rank-entry:nth-child(3){animation-delay:0.28s}
+.rank-entry:nth-child(n+4){animation-delay:0.38s}
+@keyframes bannerGlow{0%,100%{letter-spacing:0.12em;opacity:0.9}50%{letter-spacing:0.18em;opacity:1}}
+.champion-banner{animation:bannerGlow 2.5s ease-in-out infinite;}
+
+/* ── READER SEPIA MODE ── */
+#readerOverlay.sepia{background:#f5f0e8;}
+#readerOverlay.sepia .reader-topbar{background:rgba(240,235,220,0.98);border-bottom-color:rgba(139,100,50,0.2);}
+#readerOverlay.sepia .reader-text-wrap p{color:#3a2e1e;}
+#readerOverlay.sepia .reader-title{color:#5a3e20;}
+#readerOverlay.sepia .reader-font-btn{background:rgba(139,100,50,0.1);border-color:rgba(139,100,50,0.3);color:#5a3e20;}
+#readerOverlay.sepia .page-marker-label{color:#9a7040;}
+#readerOverlay.sepia .page-marker-line{background:#c8a060;}
+#readerOverlay.sepia .reader-annot-panel{background:rgba(230,220,200,0.98);border-left-color:rgba(139,100,50,0.2);}
+#readerOverlay.sepia .annot-panel-header{color:#5a3e20;}
+#readerOverlay.sepia .annot-item{background:rgba(200,180,140,0.2);border-color:rgba(139,100,50,0.2);}
+
+/* ── TIER INFO MODAL ── */
+.tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:0.875rem;}
+.tier-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);
+  padding:10px 12px;text-align:center;}
+.tier-card-name{font-family:var(--font-sans);font-size:13px;font-weight:600;margin-bottom:4px;}
+.tier-card-rule{font-size:11px;color:var(--text3);font-family:var(--font-sans);line-height:1.5;}
+
+/* ── EVAL VALIDATION ── */
+.eval-progress-bar{height:4px;background:rgba(255,255,255,0.04);border-radius:2px;
+  margin-top:6px;overflow:hidden;}
+.eval-progress-fill{height:100%;border-radius:2px;background:var(--gold);
+  transition:width 0.4s ease;}
+
+/* ── PAGE TRANSITIONS ── */
+@keyframes pageFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.page.active{animation:pageFadeIn 0.22s cubic-bezier(.22,1,.36,1);}
+
+/* ── PORTAL TIMESTAMP ── */
+.portal-update-time{font-size:11px;color:var(--text3);font-family:var(--font-sans);
+  text-align:right;padding:4px 0 12px;opacity:0.6;}
 /* SCROLLBAR */
 ::-webkit-scrollbar{width:4px;}
 ::-webkit-scrollbar-track{background:transparent;}
@@ -255,12 +382,12 @@ tr:hover td{background:rgba(201,168,76,0.02);}
 /* ── MOBILE BOTTOM NAV ── */
 #mobileNav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(12,9,6,0.98);border-top:1px solid var(--border2);padding:0;box-shadow:0 -4px 20px rgba(0,0,0,0.5);}
 .mob-nav-bar{display:flex;align-items:stretch;}
-.mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 6px;cursor:pointer;border:none;background:none;color:var(--text3);font-family:var(--font-sans);font-size:18px;letter-spacing:0.03em;gap:4px;transition:color 0.15s;min-height:56px;}
+.mob-nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 4px 6px;cursor:pointer;border:none;background:none;color:var(--text3);font-family:var(--font-sans);font-size:14px;letter-spacing:0.03em;gap:4px;transition:color 0.15s;min-height:56px;}
 .mob-nav-btn svg{width:20px;height:20px;flex-shrink:0;}
 .mob-nav-btn.active{color:var(--gold2);}
 .mob-nav-btn:hover{color:var(--text2);}
 .mob-more-menu{position:fixed;bottom:56px;right:0;left:0;background:rgba(16,13,10,0.98);border-top:1px solid var(--border2);z-index:99;padding:0.75rem 0;box-shadow:0 -4px 20px rgba(0,0,0,0.6);}
-.mob-more-item{display:flex;align-items:center;gap:12px;padding:0.7rem 1.25rem;cursor:pointer;font-family:var(--font-sans);font-size:28px;color:var(--text2);transition:background 0.15s;}
+.mob-more-item{display:flex;align-items:center;gap:12px;padding:0.7rem 1.25rem;cursor:pointer;font-family:var(--font-sans);font-size:21px;color:var(--text2);transition:background 0.15s;}
 .mob-more-item:hover{background:rgba(201,168,76,0.06);color:var(--gold2);}
 .mob-more-item svg{width:18px;height:18px;flex-shrink:0;}
 
@@ -277,18 +404,18 @@ tr:hover td{background:rgba(201,168,76,0.02);}
   .modal{width:96vw!important;max-width:96vw!important;padding:1.25rem;}
   .login-box{width:92vw;padding:0 1.25rem 1.5rem;}
   .card{padding:0.875rem;}
-  .btn{font-size:26px;}
-  .page-title{font-size:36px;}
-  table{font-size:24px;}
+  .btn{font-size:20px;}
+  .page-title{font-size:27px;}
+  table{font-size:18px;}
   th,td{padding:7px 8px;}
   /* stacked card headers */
   .card-header{flex-wrap:wrap;gap:8px;}
   .rank-entry{flex-wrap:wrap;}
-  .rank-score-big{font-size:36px;}
+  .rank-score-big{font-size:27px;}
 }
 @media(max-width:480px){
   .page{padding:0.75rem;}
-  .btn-sm{padding:5px 10px;font-size:24px;}
+  .btn-sm{padding:5px 10px;font-size:18px;}
 }
 </style>
 <!-- Firebase SDK v8 — expõe firebase globalmente de forma síncrona -->
@@ -315,11 +442,13 @@ const database = firebase.database();
 window.database = database;
 console.log('✅ Firebase inicializado. DB URL:', firebaseConfig.databaseURL);
 database.ref('.info/connected').on('value', (snap) => {
-  if(snap.val() === true){
-    console.log('🟢 Firebase conectado em tempo real');
-  } else {
-    console.warn('🔴 Firebase desconectado (offline ou URL errada)');
-  }
+  const online = snap.val() === true;
+  console.log(online ? '🟢 Firebase conectado' : '🔴 Firebase desconectado');
+  const dot=document.getElementById('fbStatusDot');
+  const txt=document.getElementById('fbStatusText');
+  if(dot){ dot.className=online?'online':'offline'; }
+  if(txt){ txt.textContent=online?'Firebase online':'Firebase offline'; }
+  window._fbConnected=online;
 });
 </script>
 </head>
@@ -329,11 +458,11 @@ database.ref('.info/connected').on('value', (snap) => {
 <!-- ═══════════ LOGIN ═══════════ -->
 <div id="loginScreen" class="login-screen">
   <div class="login-box">
-    <div class="login-banner"><div id="loginBannerImg" style="background:linear-gradient(135deg,rgba(30,20,8,0.98),rgba(12,8,4,0.99));height:80px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.3)"><span style="font-family:var(--font-display);font-size:22px;color:var(--gold2);letter-spacing:0.15em">✦ Veritas ✦</span></div></div>
+    <div class="login-banner"><div id="loginBannerImg" style="background:linear-gradient(135deg,rgba(30,20,8,0.98),rgba(12,8,4,0.99));height:80px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.3)"><span style="font-family:var(--font-display);font-size:16px;color:var(--gold2);letter-spacing:0.15em">✦ Veritas ✦</span></div></div>
     <div class="login-logo">
-      <h2>Veritas Literário</h2>
+      <h2 class="login-title-shimmer">Veritas Literário</h2>
+      <div class="login-ornament"></div>
       <p>Sistema de Avaliação</p>
-      <div class="deco">— ◈ —</div>
     </div>
     <form onsubmit="doLogin();return false;" autocomplete="on">
     <div class="form-group"><label>Perfil</label>
@@ -347,7 +476,7 @@ database.ref('.info/connected').on('value', (snap) => {
     <div id="loginErr" class="alert alert-err hidden"></div>
     <button type="submit" class="btn btn-primary" style="width:100%">Entrar</button>
     </form>
-    <div style="margin-top:1rem;font-size:22px;color:var(--text3);font-family:var(--font-sans);text-align:center;line-height:1.6">
+    <div style="margin-top:1rem;font-size:16px;color:var(--text3);font-family:var(--font-sans);text-align:center;line-height:1.6">
       Em caso de dúvidas, contacte o administrador do concurso.
     </div>
   </div>
@@ -358,7 +487,7 @@ database.ref('.info/connected').on('value', (snap) => {
   <div class="sidebar" id="mainSidebar">
     <div id="customSidebarBgLayer"></div>
     <div class="sidebar-top">
-      <div class="sidebar-banner"><div id="sidebarBannerImg" style="height:60px;background:linear-gradient(135deg,rgba(30,20,8,0.98),rgba(12,8,4,0.99));display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.2)"><span style="font-family:var(--font-display);font-size:14px;color:var(--gold);letter-spacing:0.1em">✦ Veritas ✦</span></div></div>
+      <div class="sidebar-banner"><div id="sidebarBannerImg" style="height:60px;background:linear-gradient(135deg,rgba(30,20,8,0.98),rgba(12,8,4,0.99));display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(201,168,76,0.2)"><span style="font-family:var(--font-display);font-size:10px;color:var(--gold);letter-spacing:0.1em">✦ Veritas ✦</span></div></div>
       <div class="sidebar-logo">
         <h1 id="appTitle">Veritas</h1>
         <a href="https://cronistadovitral.substack.com/" target="_blank">visite-me no Substack ↗</a>
@@ -401,17 +530,19 @@ database.ref('.info/connected').on('value', (snap) => {
       </div>
       <div class="nav-item" onclick="goTo('firebase')" data-page="firebase" id="navFirebase">
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 19h20L12 2z"/><path d="M12 8v4M12 16h.01"/></svg>
-        <span class="nav-label">Firebase</span>
+        <span class="nav-label">Sync / Firebase</span>
       </div>
       <div class="nav-item" onclick="goTo('customizar')" data-page="customizar" id="navCustom">
         <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
         <span class="nav-label">Customizar</span>
       </div>
     </nav>
+    <div id="fbStatusBar"><div id="fbStatusDot"></div><span id="fbStatusText">Firebase —</span></div>
     <div class="sidebar-user">
       <div class="user-name" id="sidebarName">—</div>
       <div class="user-role" id="sidebarRole">Juiz</div>
       <button class="logout-btn" onclick="doLogout()">Sair</button>
+      <button class="logout-btn" id="btnSenhas" onclick="openChangePass()" style="display:none;margin-top:4px;border-color:rgba(201,168,76,0.3);color:var(--gold)">🔑 Senhas</button>
     </div>
   </div>
 
@@ -462,7 +593,7 @@ database.ref('.info/connected').on('value', (snap) => {
     <div id="page-revisao" class="page">
       <div class="page-header"><div class="page-title">Revisão de Avaliações</div><div class="page-sub">Visualize, confirme ou ajuste as notas dos avaliadores</div></div>
       <div id="revisaoContent">
-        <div style="font-size:28px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem">
+        <div style="font-size:21px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem">
           Como administrador, você pode visualizar todas as avaliações e, se necessário, confirmar ou ajustar a nota final de uma submissão. Você não avalia — apenas revisa.
         </div>
         <div style="margin-bottom:1.25rem">
@@ -555,7 +686,7 @@ database.ref('.info/connected').on('value', (snap) => {
     <div class="form-group">
       <label>Texto Completo</label>
       <textarea id="subTexto" rows="7" placeholder="Cole o texto aqui..." oninput="updateWordCount()"></textarea>
-      <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">Palavras: <span id="wordCount" style="color:var(--gold)">0</span> / <span id="wordLimit">4000</span></div>
+      <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">Palavras: <span id="wordCount" style="color:var(--gold)">0</span> / <span id="wordLimit">4000</span></div>
     </div>
     <div id="subErr" class="alert alert-err hidden"></div>
     <div class="btn-group"><button class="btn btn-primary" onclick="saveSubmissao()">Submeter</button><button class="btn" onclick="closeModal('modalNewSub')">Cancelar</button></div>
@@ -566,7 +697,7 @@ database.ref('.info/connected').on('value', (snap) => {
   <div class="modal" style="width:700px">
     <button class="modal-close" onclick="closeModal('modalViewSub')">✕</button>
     <h3 id="viewSubTitle">—</h3>
-    <div id="viewSubMeta" style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:0.875rem"></div>
+    <div id="viewSubMeta" style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-bottom:0.875rem"></div>
     <div class="text-preview" id="viewSubText"></div>
   </div>
 </div>
@@ -576,7 +707,7 @@ database.ref('.info/connected').on('value', (snap) => {
     <button class="modal-close" onclick="closeModal('modalFinalizeEvent')">✕</button>
     <h3>Finalizar Evento</h3>
     <div class="alert alert-warn" id="finalizeInfo"></div>
-    <p style="font-size:24px;color:var(--text2);font-family:var(--font-sans);line-height:1.6;margin-bottom:1.25rem">Ao finalizar, o ranking fica congelado, os três primeiros são sagrados campeões e os títulos são atualizados. Esta ação não pode ser desfeita.</p>
+    <p style="font-size:18px;color:var(--text2);font-family:var(--font-sans);line-height:1.6;margin-bottom:1.25rem">Ao finalizar, o ranking fica congelado, os três primeiros são sagrados campeões e os títulos são atualizados. Esta ação não pode ser desfeita.</p>
     <div id="finalizePreview"></div>
     <div class="btn-group">
       <button class="btn btn-primary" onclick="confirmFinalizeEvent()">Confirmar Finalização</button>
@@ -599,7 +730,7 @@ database.ref('.info/connected').on('value', (snap) => {
   <div class="modal" style="width:780px;max-width:97vw">
     <button class="modal-close" onclick="closeModal('modalEventDetail')">✕</button>
     <h3 id="evDetailTitle">—</h3>
-    <div id="evDetailMeta" style="font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1.25rem"></div>
+    <div id="evDetailMeta" style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1.25rem"></div>
     <!-- Tabs -->
     <div style="display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:1.25rem">
       <button id="evTabSubs" class="ev-tab ev-tab-active" onclick="switchEvTab('subs')">📄 Submissões</button>
@@ -644,6 +775,7 @@ function _ensureDB(){
   if(!DB.participants || typeof DB.participants!=='object' || Array.isArray(DB.participants)) DB.participants={};
   if(!DB.starRatings  || typeof DB.starRatings!=='object'  || Array.isArray(DB.starRatings))  DB.starRatings={};
   if(!DB.customization|| typeof DB.customization!=='object') DB.customization={};
+  if(!DB.annotations || typeof DB.annotations!=='object' || Array.isArray(DB.annotations)) DB.annotations={};
 }
 _ensureDB();
 
@@ -778,30 +910,8 @@ function updateParticipantAfterEvent(evId){
 // ════════════════════════════════════════
 // AUTH
 // ════════════════════════════════════════
-function doLogin(){
-  const name=document.getElementById('loginName').value.trim();
-  const pass=document.getElementById('loginPass').value;
-  const u=DB.users.find(u=>u.name.toLowerCase()===name.toLowerCase()&&u.pass===pass);
-  const errEl=document.getElementById('loginErr');
-  if(!u){errEl.textContent='Perfil ou senha incorretos.';errEl.classList.remove('hidden');return;}
-  errEl.classList.add('hidden');
-  currentUser=u;
-  document.getElementById('sidebarName').textContent=u.name;
-  document.getElementById('sidebarRole').textContent=u.role;
-  document.getElementById('loginScreen').classList.add('hidden');
-  document.getElementById('appShell').classList.remove('hidden');
-  document.getElementById('btnNewEvento').style.display=''; // all users can create events
-  document.getElementById('navCustom').style.display=u.id==='admin'?'':'none';
-  const nfb=document.getElementById('navFirebase');if(nfb)nfb.style.display=u.id==='admin'?'':'none';
-  document.getElementById('navServidor').style.display=u.id==='admin'?'':'none';
-  const navRev=document.getElementById('navRevisao');if(navRev)navRev.style.display=u.id==='admin'?'':'none';
-  // Admin cannot evaluate directly
-  const navAv=document.querySelector('[data-page="avaliar"]');
-  if(navAv) navAv.style.display=u.id==='admin'?'none':'';
-  applyCustomization();
-  renderAll();
-  updateMobNav();
-}
+// doLogin defined in new block above
+function _oldLoginRemoved(){}
 function doLogout(){
   currentUser=null;
   document.getElementById('loginScreen').classList.remove('hidden');
@@ -875,15 +985,15 @@ function saveEvento(){
 function renderEventos(){
   const el=document.getElementById('eventosList');
   const isAdmin=currentUser&&currentUser.id==='admin';
-  if(!DB.eventos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:26px;padding:1rem 0">Nenhum evento cadastrado.</div>';return;}
+  if(!DB.eventos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:20px;padding:1rem 0">Nenhum evento cadastrado.</div>';return;}
   el.innerHTML=DB.eventos.map(ev=>{
     const subs=(DB.submissoes||[]).filter(s=>s.eventoId===ev.id).length;
     const tierLabel=ev.tierMin&&ev.tierMin!=='none'?`Restrito: ${{acolito:'Acólito+',veterano:'Veterano+',escritor:'Escritores'}[ev.tierMin]}`:'Aberto a todos';
     const tierBadge=ev.tierMin&&ev.tierMin!=='none'?`<span class="badge badge-crimson">${tierLabel}</span>`:`<span class="badge badge-blue">${tierLabel}</span>`;
     const finalBadge=ev.finalized?'<span class="badge badge-champion">✦ Finalizado</span>':'<span class="badge badge-silver">Em curso</span>';
     const finalBtn=isAdmin&&!ev.finalized?`<button class="btn btn-sm" onclick="openFinalizeEvent('${ev.id}')" style="border-color:var(--gold);color:var(--gold)">Finalizar</button>`:'';
-    const pubLink=`<button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')" style="font-size:20px">🔗 Link Público</button>`;
-    const editalBtn=`<button class="btn btn-sm" onclick="openEditalModal('${ev.id}')" style="font-size:20px">📜 Edital</button>`;
+    const pubLink=`<button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')" style="font-size:15px">🔗 Link Público</button>`;
+    const editalBtn=`<button class="btn btn-sm" onclick="openEditalModal('${ev.id}')" style="font-size:15px">📜 Edital</button>`;
     const coverStyle=ev.cover?`style="background-image:url('${ev.cover}');background-size:cover;background-position:center;height:50px;border-radius:var(--radius);margin-bottom:8px;opacity:0.4"`:'';
     const coverDiv=ev.cover?`<div ${coverStyle}></div>`:'';
     return `<div class="card ${ev.finalized?'card-champion':''}">
@@ -893,7 +1003,7 @@ function renderEventos(){
         <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">${finalBadge}<span class="badge badge-blue">${subs}/${ev.max}</span></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-        <div style="display:flex;gap:0.875rem;font-size:20px;font-family:var(--font-sans);color:var(--text3);flex-wrap:wrap">
+        <div style="display:flex;gap:0.875rem;font-size:15px;font-family:var(--font-sans);color:var(--text3);flex-wrap:wrap">
           <span>Início: <span style="color:var(--text2)">${ev.start||'—'}</span></span>
           <span>Fim: <span style="color:var(--text2)">${ev.end||'—'}</span></span>
           <span>Limite: <span style="color:var(--text2)">${ev.words}p</span></span>
@@ -901,7 +1011,7 @@ function renderEventos(){
         </div>
         <div style="display:flex;gap:5px;flex-wrap:wrap">
           <button class="btn btn-primary btn-sm" onclick="openEventDetail('${ev.id}')">📂 Ver Submissões</button>
-          ${editalBtn}${pubLink}<button class="btn btn-sm" onclick="openEditEvent('${ev.id}')" style="font-size:20px">✏️ Editar</button>${finalBtn}
+          ${editalBtn}${pubLink}<button class="btn btn-sm" onclick="openEditEvent('${ev.id}')" style="font-size:15px">✏️ Editar</button>${finalBtn}
         </div>
       </div>
     </div>`;
@@ -921,9 +1031,9 @@ function openFinalizeEvent(evId){
   const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
   let ranked=subs.map(s=>{const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);return{...s,avg:sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null};}).filter(s=>s.avg!==null).sort((a,b)=>b.avg-a.avg);
   const medals=['🥇','🥈','🥉'];
-  let html='<div style="margin-bottom:0.875rem;font-size:22px;font-family:var(--font-sans);color:var(--text3)">Pódio atual:</div>';
-  if(!ranked.length) html+='<div style="color:var(--text3);font-family:var(--font-sans);font-size:22px">Nenhum texto avaliado.</div>';
-  else ranked.slice(0,3).forEach((s,i)=>{html+=`<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:22px"><span style="font-size:36px">${medals[i]}</span><div style="flex:1"><strong style="color:var(--text)">${s.titulo}</strong><br><span style="color:var(--text3)">${s.autor} · ${s.avg.toFixed(2)}</span></div></div>`;});
+  let html='<div style="margin-bottom:0.875rem;font-size:16px;font-family:var(--font-sans);color:var(--text3)">Pódio atual:</div>';
+  if(!ranked.length) html+='<div style="color:var(--text3);font-family:var(--font-sans);font-size:16px">Nenhum texto avaliado.</div>';
+  else ranked.slice(0,3).forEach((s,i)=>{html+=`<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-family:var(--font-sans);font-size:16px"><span style="font-size:27px">${medals[i]}</span><div style="flex:1"><strong style="color:var(--text)">${s.titulo}</strong><br><span style="color:var(--text3)">${s.autor} · ${s.avg.toFixed(2)}</span></div></div>`;});
   document.getElementById('finalizePreview').innerHTML=html;
   showModal('modalFinalizeEvent');
 }
@@ -933,7 +1043,17 @@ function confirmFinalizeEvent(){
   if(ev) ev.finalized=true;
   updateParticipantAfterEvent(pendingFinalizeId);
   saveDB();closeModal('modalFinalizeEvent');renderEventos();pendingFinalizeId=null;
-  alert('Evento finalizado! Pódio sagrado e títulos atualizados.');
+  // Trigger dramatic ranking reveal
+  goTo('ranking');
+  setTimeout(()=>{
+    const sel=document.getElementById('rankingEvento');
+    if(sel&&pendingFinalizeId===null){
+      // populate and select the just-finalized event
+      populateRankingSelect();
+    }
+    renderRanking();
+  },200);
+  setTimeout(()=>alert('✦ Pódio sagrado! Os campeões foram coroados.'),400);
 }
 // ════════════════════════════════════════
 // EVENT DETAIL (click-through to submissions)
@@ -971,7 +1091,7 @@ function renderEventDetailSubs(){
   const subs=(DB.submissoes||[]).filter(s=>s.eventoId===evId);
   const cont=document.getElementById('evTabContentSubs');
   if(!subs.length){
-    cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px;padding:1.5rem 0;text-align:center">Nenhuma submissão ainda para este evento.</div>';
+    cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:21px;padding:1.5rem 0;text-align:center">Nenhuma submissão ainda para este evento.</div>';
     return;
   }
   // Group by modalidade
@@ -983,21 +1103,21 @@ function renderEventDetailSubs(){
     const mLabel={conto:'Contos',cronica:'Crônicas',poesia:'Poesias'}[mod]||mod;
     const mBadge=mod==='poesia'?'badge-gold':mod==='cronica'?'badge-blue':'badge-green';
     html+=`<div style="margin-bottom:1.25rem">
-      <div style="font-family:var(--font-display);font-size:28px;color:var(--gold2);margin-bottom:0.75rem;padding-bottom:6px;border-bottom:1px solid var(--border)">${mLabel} <span class="badge ${mBadge}">${list.length}</span></div>`;
+      <div style="font-family:var(--font-display);font-size:21px;color:var(--gold2);margin-bottom:0.75rem;padding-bottom:6px;border-bottom:1px solid var(--border)">${mLabel} <span class="badge ${mBadge}">${list.length}</span></div>`;
     list.forEach(s=>{
       // CORREÇÃO: fallback
       const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
       const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?(sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2):'—';
-      const judgesHtml=avs.map(a=>`<span class="badge badge-silver" style="font-size:22px">${a.judgeName}: ${a.finalScore!=null?a.finalScore.toFixed(2):'—'}</span>`).join(' ');
+      const judgesHtml=avs.map(a=>`<span class="badge badge-silver" style="font-size:16px">${a.judgeName}: ${a.finalScore!=null?a.finalScore.toFixed(2):'—'}</span>`).join(' ');
       html+=`<div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(180,140,60,0.06)">
         <div style="flex:1;min-width:0">
-          <div style="font-family:var(--font-serif);font-size:30px;color:var(--text)">${s.titulo}</div>
-          <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${s.autor} · ${s.wc} palavras · ${s.lang==='pt'?'PT':'EN'}</div>
-          <div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap">${judgesHtml||'<span style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">Nenhuma avaliação ainda</span>'}</div>
+          <div style="font-family:var(--font-serif);font-size:22px;color:var(--text)">${s.titulo}</div>
+          <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${s.autor} · ${s.wc} palavras · ${s.lang==='pt'?'PT':'EN'}</div>
+          <div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap">${judgesHtml||'<span style="font-size:16px;color:var(--text3);font-family:var(--font-sans)">Nenhuma avaliação ainda</span>'}</div>
         </div>
         <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0">
-          <div style="font-size:40px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg}</div>
+          <div style="font-size:30px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg}</div>
           <div style="display:flex;gap:5px">
             <button class="btn btn-sm" onclick="viewSubInDetail('${s.id}')">Ler</button>
             <button class="btn btn-primary btn-sm" onclick="evalFromDetail('${s.id}')">Avaliar</button>
@@ -1032,7 +1152,7 @@ function renderEventDetailAddForm(){
     <div class="form-group">
       <label>Texto Completo</label>
       <textarea id="detailSubTexto" rows="9" placeholder="Cole o texto aqui..." oninput="updateDetailWordCount()"></textarea>
-      <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
+      <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
         Palavras: <span id="detailWordCount" style="color:var(--gold)">0</span> / ${ev.words}
       </div>
     </div>
@@ -1157,7 +1277,7 @@ function renderSubmissoes(){
   let subs=DB.submissoes||[];
   if(fEv) subs=subs.filter(s=>s.eventoId===fEv);
   if(fMod) subs=subs.filter(s=>s.modal===fMod);
-  if(!subs.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px;padding:1rem 0">Nenhuma submissão encontrada.</div>';return;}
+  if(!subs.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:18px;padding:1rem 0">Nenhuma submissão encontrada.</div>';return;}
   el.innerHTML=subs.map(s=>{
     const ev=(DB.eventos||[]).find(e=>e.id===s.eventoId);
     // CORREÇÃO: fallback
@@ -1171,7 +1291,7 @@ function renderSubmissoes(){
         <div style="display:flex;gap:5px;align-items:center"><span class="badge ${mB}">${s.modal}</span><span class="badge badge-silver">${s.wc}p</span></div>
       </div>
       <div style="display:flex;justify-content:space-between;align-items:center">
-        <div style="font-size:20px;font-family:var(--font-sans);color:var(--text3)">${avs.length} aval. · Média: <span style="color:var(--gold)">${avg}</span></div>
+        <div style="font-size:15px;font-family:var(--font-sans);color:var(--text3)">${avs.length} aval. · Média: <span style="color:var(--gold)">${avg}</span></div>
         <div style="display:flex;gap:5px">
           <button class="btn btn-sm" onclick="viewSub('${s.id}')">Ver texto</button>
           <button class="btn btn-primary btn-sm" onclick="goToEval('${s.id}')">Avaliar</button>
@@ -1182,11 +1302,7 @@ function renderSubmissoes(){
 }
 function viewSub(id){
   const s=DB.submissoes.find(x=>x.id===id);if(!s) return;
-  const ev=DB.eventos.find(e=>e.id===s.eventoId);
-  document.getElementById('viewSubTitle').textContent=s.titulo;
-  document.getElementById('viewSubMeta').textContent=`${s.autor} · ${ev?ev.nome:'?'} · ${s.modal} · ${s.wc} palavras`;
-  document.getElementById('viewSubText').innerHTML=s.texto.split('\n').map(l=>`<p>${l||'&nbsp;'}</p>`).join('');
-  showModal('modalViewSub');
+  openReader(s);
 }
 function goToEval(subId){goTo('avaliar');document.getElementById('selectSubToEval').value=subId;loadEvaluation();}
 
@@ -1274,7 +1390,7 @@ sel.innerHTML='<option value="">—</option>'+(DB.submissoes||[]).map(s=>{const 
 function loadEvaluation(){
   const subId=document.getElementById('selectSubToEval').value;
   const cont=document.getElementById('evalContainer');
-  if(!subId){cont.classList.add('hidden');return;}
+  if(!subId){cont.classList.add('hidden');stopAutosave();return;}
   // CORREÇÃO: fallback
   const sub=(DB.submissoes||[]).find(s=>s.id===subId);if(!sub) return;
   currentEvalSub=sub;
@@ -1283,12 +1399,22 @@ function loadEvaluation(){
   else currentEvalData={subId,judgeId:currentUser.id,judgeName:currentUser.name,grammarErrors:analyzeGrammar(sub.texto,sub.lang),confirmedErrors:[],manualErrors:[],retQ:{},logQ:{},origQ:{},profQ:{},modalQ:{},tensivity:analyzeTensivity(sub.texto),finalScore:null};
   cont.classList.remove('hidden');
   renderEvalForm(sub);
+  startAutosave();
 }
 function renderEvalForm(sub){
   const ev=DB.eventos.find(e=>e.id===sub.eventoId);
   let html=`<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.25rem;flex-wrap:wrap;gap:0.875rem">
-    <div><div style="font-family:var(--font-display);font-size:32px;color:var(--gold2)">${sub.titulo}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${sub.autor} · ${ev?ev.nome:'?'} · ${sub.modal}</div></div>
-    <button class="btn btn-primary btn-sm" onclick="finalizeEval()">Salvar Avaliação</button></div>`;
+    <div><div style="font-family:var(--font-display);font-size:24px;color:var(--gold2)">${sub.titulo}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${sub.autor} · ${ev?ev.nome:'?'} · ${sub.modal}</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+      <button class="btn btn-sm" onclick="openReader(currentEvalSub)" style="border-color:var(--gold);color:var(--gold)">📖 Ler em tela cheia</button>
+      <span id="autosaveIndicator">—</span>
+      <button class="btn btn-primary btn-sm" onclick="finalizeEval()">Salvar Avaliação</button>
+    </div>
+    <div class="eval-progress-bar"><div class="eval-progress-fill" id="evalProgressFill" style="width:0%"></div></div>
+    </div>`;
+  // Annotations summary from fullscreen reader
+  const annotSummary=getAnnotSummaryForEval(sub.id);
+  if(annotSummary) html+=annotSummary;
   html+=renderGrammarSection();
   html+=renderQSection('Retórica','retQ',RQ,V20,true);
   html+=renderQSection('Lógica','logQ',LQ,V20,true);
@@ -1298,15 +1424,15 @@ function renderEvalForm(sub){
   html+=renderTensivitySection(currentEvalData.tensivity);
   html+=`<div class="card" style="border-color:var(--border2);margin-top:0.875rem">
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem">
-    <div style="font-family:var(--font-display);font-size:30px;color:var(--gold2)">Nota Final</div>
-    <div id="finalScoreDisplay" style="font-size:52px;color:var(--gold);font-family:var(--font-sans);font-weight:300">—</div>
+    <div style="font-family:var(--font-display);font-size:22px;color:var(--gold2)">Nota Final</div>
+    <div id="finalScoreDisplay" style="font-size:39px;color:var(--gold);font-family:var(--font-sans);font-weight:300">—</div>
   </div>
-  <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1rem;line-height:1.6">
+  <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-bottom:1rem;line-height:1.6">
     Sua nota individual. A pontuação final do participante é a <strong style="color:var(--text2)">média das três notas dos avaliadores</strong>.
   </div>
   <div class="form-group" style="margin-top:0.5rem">
     <label>Feedback para o autor <span style="color:var(--text3);font-weight:400;text-transform:none;letter-spacing:0">(opcional — será visível ao participante após finalização do evento)</span></label>
-    <textarea id="evalFeedback" rows="4" placeholder="Deixe aqui suas impressões sobre a obra, pontos fortes, sugestões de melhoria..." style="font-size:24px">${currentEvalData.feedback||''}</textarea>
+    <textarea id="evalFeedback" rows="4" placeholder="Deixe aqui suas impressões sobre a obra, pontos fortes, sugestões de melhoria..." style="font-size:18px">${currentEvalData.feedback||''}</textarea>
   </div>
   <button class="btn btn-primary btn-sm" onclick="finalizeEval()">Salvar Avaliação</button>
 </div>`;
@@ -1320,27 +1446,28 @@ function renderGrammarSection(){
   const rows=(d.grammarErrors||[]).map((e,i)=>{
     const ok=conf.includes(i);
     return `<div class="error-item ${ok?'error-confirmed':''}"><input type="checkbox" class="error-check" ${ok?'checked':''} onchange="toggleGramErr(${i},this.checked)"/><div class="err-text"><strong style="color:var(--text)">${e.msg}</strong><br><span style="color:var(--text3)">${e.ctx}</span></div></div>`;
-  }).join('')||'<div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">Nenhum erro automático detectado.</div>';
+  }).join('')||'<div style="font-size:16px;color:var(--text3);font-family:var(--font-sans)">Nenhum erro automático detectado.</div>';
   const mRows=manual.map((m,i)=>{
     const text=typeof m==='object'?m.text:m;
-    const score=typeof m==='object'?m.score:-0.5;
-    const scoreColor=score>0?'color:#5ab870':score<-0.7?'color:#e06060':'color:var(--gold)';
-    const scoreLabel=score>0?`+${score.toFixed(1)}`:score.toFixed(1);
-    return`<div class="error-item"><span style="flex:1;color:var(--text2);font-family:var(--font-sans);font-size:26px">${text}</span><span style="font-size:26px;font-weight:600;font-family:var(--font-sans);${scoreColor};margin-right:8px">${scoreLabel}</span><button class="btn btn-sm btn-danger" onclick="removeManualErr(${i})">✕</button></div>`;
+    const isBonusScore=typeof m==='object'&&m.isBonusScore;
+    const score=typeof m==='object'?m.score:(isBonusScore?5:-0.5);
+    const scoreColor=isBonusScore?'color:var(--gold)':score>0?'color:#5ab870':'color:#e06060';
+    const scoreLabel=isBonusScore?score.toFixed(1)+'/10':(score>0?'+'+score.toFixed(1):score.toFixed(1));
+    const badge=isBonusScore?'<span class="bonus-score-badge" style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);color:var(--gold2)">Nota extra: '+score+'/10</span>':'';
+    return'<div class="error-item bonus-item"><div style="flex:1"><span style="color:var(--text2);font-family:var(--font-sans);font-size:13px">'+text+'</span>'+(badge?'<br>'+badge:'')+'</div><span style="font-size:13px;font-weight:600;font-family:var(--font-sans);'+scoreColor+';margin-right:8px">'+scoreLabel+'</span><button class="btn btn-sm btn-danger" onclick="removeManualErr('+i+')">✕</button></div>';
   }).join('');
   return `<div class="eval-section"><div class="eval-section-header"><span class="eval-section-title">Gramática</span><span class="eval-section-score" id="gramScore">${score.toFixed(2)}</span></div>
-  <div class="eval-section-body"><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:9px">Confirme erros (cada um subtrai 0,1 da nota base 10,00)</div>${rows}
-  <div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid var(--border)"><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px">Erros manuais</div><div id="manualErrContainer">${mRows}</div>
+  <div class="eval-section-body"><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-bottom:9px">Confirme erros (cada um subtrai 0,1 da nota base 10,00)</div>${rows}
+  <div style="margin-top:0.875rem;padding-top:0.875rem;border-top:1px solid var(--border)"><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:7px">Erros manuais</div><div id="manualErrContainer">${mRows}</div>
   <div style="margin-top:8px">
-    <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px">Descreva o erro e atribua uma pontuação:</div>
+    <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-bottom:6px">Descreva o erro e atribua uma pontuação:</div>
     <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-      <input type="text" id="manualErrInput" placeholder="Descrição do erro observado..." style="flex:1;min-width:160px;font-size:26px"/>
-      <select id="manualErrScore" style="width:110px;font-size:26px">
-        <option value="1.0">+1,0 (bonus)</option>
-        <option value="0.5">+0,5 (leve bonus)</option>
-        <option value="-0.5" selected>-0,5 (leve erro)</option>
-        <option value="-1.0">-1,0 (erro grave)</option>
-      </select>
+      <input type="text" id="manualErrInput" placeholder="Descrição do erro observado..." style="flex:1;min-width:160px;font-size:20px"/>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <label style="font-size:10px;letter-spacing:0.06em;margin-bottom:0">Nota (1-10)</label>
+        <input type="number" id="manualErrScore" min="1" max="10" step="0.5" value="5"
+          style="width:75px;font-size:14px;text-align:center" title="Nota de 1 a 10 que entrará na média final"/>
+      </div>
       <button class="btn btn-sm btn-primary" onclick="addManualErr()">Adicionar</button>
     </div>
   </div></div></div></div>`;
@@ -1349,12 +1476,12 @@ function toggleGramErr(idx,checked){const c=currentEvalData.confirmedErrors;if(c
 function updateGramScore(){
   const conf=currentEvalData.confirmedErrors||[];
   const manual=currentEvalData.manualErrors||[];
-  // confirmed auto-errors: each subtracts 0.1
   let score=10-(conf.length*0.1);
-  // manual errors: use their assigned score value
+  // only non-bonus items affect grammar score
   manual.forEach(m=>{
+    if(typeof m==='object'&&m.isBonusScore) return; // bonus scores handled separately
     const val=typeof m==='object'?m.score:-0.5;
-    score+=val; // score is already negative for errors, positive for bonuses
+    score+=val;
   });
   score=Math.max(0,Math.min(10,score));
   const el=document.getElementById('gramScore');
@@ -1364,9 +1491,10 @@ function addManualErr(){
   const inp=document.getElementById('manualErrInput');
   const scoreEl=document.getElementById('manualErrScore');
   if(!inp.value.trim()) return;
-  const score=parseFloat(scoreEl?scoreEl.value:'-0.5');
-  currentEvalData.manualErrors.push({text:inp.value.trim(),score});
-  inp.value='';
+  const rawVal=parseFloat(scoreEl?scoreEl.value:5);
+  const score=Math.max(1,Math.min(10,rawVal)); // 1-10 scale
+  currentEvalData.manualErrors.push({text:inp.value.trim(),score,isBonusScore:true});
+  inp.value='';if(scoreEl) scoreEl.value='5';
   updateGramScore();refreshManualErrs();
 }
 function removeManualErr(i){currentEvalData.manualErrors.splice(i,1);updateGramScore();refreshManualErrs();}
@@ -1375,14 +1503,12 @@ function refreshManualErrs(){
   if(!c) return;
   c.innerHTML=currentEvalData.manualErrors.map((m,i)=>{
     const text=typeof m==='object'?m.text:m;
-    const score=typeof m==='object'?m.score:-0.5;
-    const scoreColor=score>0?'color:#5ab870':score<-0.7?'color:#e06060':'color:var(--gold)';
-    const scoreLabel=score>0?`+${score.toFixed(1)}`:score.toFixed(1);
-    return`<div class="error-item">
-      <span style="flex:1;color:var(--text2);font-family:var(--font-sans);font-size:26px">${text}</span>
-      <span style="font-size:26px;font-weight:600;font-family:var(--font-sans);${scoreColor};margin-right:8px">${scoreLabel}</span>
-      <button class="btn btn-sm btn-danger" onclick="removeManualErr(${i})">✕</button>
-    </div>`;
+    const isBonusScore=typeof m==='object'&&m.isBonusScore;
+    const score=typeof m==='object'?m.score:(isBonusScore?5:-0.5);
+    const scoreColor=isBonusScore?'color:var(--gold)':score>0?'color:#5ab870':'color:#e06060';
+    const scoreLabel=isBonusScore?score.toFixed(1)+'/10':(score>0?'+'+score.toFixed(1):score.toFixed(1));
+    const badge=isBonusScore?'<span class="bonus-score-badge" style="background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.3);color:var(--gold2)">Nota extra: '+score+'/10</span>':'';
+    return'<div class="error-item bonus-item"><div style="flex:1"><span style="color:var(--text2);font-family:var(--font-sans);font-size:13px">'+text+'</span>'+(badge?'<br>'+badge:'')+'</div><span style="font-size:13px;font-weight:600;font-family:var(--font-sans);'+scoreColor+';margin-right:8px">'+scoreLabel+'</span><button class="btn btn-sm btn-danger" onclick="removeManualErr('+i+')">✕</button></div>';
   }).join('');
 }
 
@@ -1400,13 +1526,14 @@ function renderQSection(title,key,questions,vals,is20,modalCat){
   }).join('');
   const sum=Object.values(answers).reduce((a,b)=>a+b,0);
   const scoreDisp=answered>0?Math.min(10,Math.max(0,5+sum)).toFixed(2):'—';
-  return`<div class="eval-section" id="sec_${sk}"><div class="eval-section-header"><div><span class="eval-section-title">${title}</span><div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:1px">${answered}/${questions.length}</div></div><span class="eval-section-score" id="score_${sk}">${scoreDisp}</span></div><div class="eval-section-body">${rows}</div></div>`;
+  return`<div class="eval-section" id="sec_${sk}"><div class="eval-section-header"><div><span class="eval-section-title">${title}</span><div style="font-size:14px;color:var(--text3);font-family:var(--font-sans);margin-top:1px">${answered}/${questions.length}</div></div><span class="eval-section-score" id="score_${sk}">${scoreDisp}</span></div><div class="eval-section-body">${rows}</div></div>`;
 }
 function setQ(sk,modalCat,idx,val,lbl){
   let answers;
   if(modalCat){currentEvalData.modalQ=currentEvalData.modalQ||{};currentEvalData.modalQ[modalCat]=currentEvalData.modalQ[modalCat]||{};answers=currentEvalData.modalQ[modalCat];}
   else{currentEvalData[sk]=currentEvalData[sk]||{};answers=currentEvalData[sk];}
   answers[idx]=val;
+  updateEvalProgress();
   const sec=document.getElementById('sec_'+sk);
   if(sec){
     const rows=sec.querySelectorAll('.question-row');
@@ -1420,7 +1547,7 @@ function renderTensivitySection(t){
   if(!t) return '';
   const eS=Array.from({length:10},(_,i)=>`<div class="tensiv-seg ${i<t.ext?'on':''}"></div>`).join('');
   const iS=Array.from({length:10},(_,i)=>`<div class="tensiv-seg ${i<t.intv?'on':''}"></div>`).join('');
-  return`<div class="eval-section"><div class="eval-section-header"><span class="eval-section-title">Tensividade Semiótica</span><span class="eval-section-score">${t.ext}·${t.intv}</span></div><div class="eval-section-body"><div class="tensiv-grid"><div class="tensiv-meter"><div class="tensiv-label">Extensividade</div><div class="tensiv-val">${t.ext}</div><div class="tensiv-desc">${t.extDesc}</div><div class="tensiv-segs">${eS}</div><div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">${t.words}p · ${t.sentences}f · ${t.unique} únicas</div></div><div class="tensiv-meter"><div class="tensiv-label">Intensividade</div><div class="tensiv-val">${t.intv}</div><div class="tensiv-desc">${t.intvDesc}</div><div class="tensiv-segs">${iS}</div><div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">Densidade léxica: ${t.lexDensity}%</div></div></div><div style="margin-top:0.875rem;padding:0.65rem;background:rgba(255,255,255,0.01);border-radius:var(--radius);font-size:20px;font-family:var(--font-sans);color:var(--text3);line-height:1.7"><strong style="color:var(--text2)">Zilberberg:</strong> Extensividade = amplitude e variedade discursiva; Intensividade = concentração e densidade expressiva.</div></div></div>`;
+  return`<div class="eval-section"><div class="eval-section-header"><span class="eval-section-title">Tensividade Semiótica</span><span class="eval-section-score">${t.ext}·${t.intv}</span></div><div class="eval-section-body"><div class="tensiv-grid"><div class="tensiv-meter"><div class="tensiv-label">Extensividade</div><div class="tensiv-val">${t.ext}</div><div class="tensiv-desc">${t.extDesc}</div><div class="tensiv-segs">${eS}</div><div style="font-size:14px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">${t.words}p · ${t.sentences}f · ${t.unique} únicas</div></div><div class="tensiv-meter"><div class="tensiv-label">Intensividade</div><div class="tensiv-val">${t.intv}</div><div class="tensiv-desc">${t.intvDesc}</div><div class="tensiv-segs">${iS}</div><div style="font-size:14px;color:var(--text3);font-family:var(--font-sans);margin-top:7px">Densidade léxica: ${t.lexDensity}%</div></div></div><div style="margin-top:0.875rem;padding:0.65rem;background:rgba(255,255,255,0.01);border-radius:var(--radius);font-size:15px;font-family:var(--font-sans);color:var(--text3);line-height:1.7"><strong style="color:var(--text2)">Zilberberg:</strong> Extensividade = amplitude e variedade discursiva; Intensividade = concentração e densidade expressiva.</div></div></div>`;
 }
 function calcFinalScore(){
   const d=currentEvalData,sub=currentEvalSub;
@@ -1433,10 +1560,28 @@ function calcFinalScore(){
   [['retQ',20],['logQ',20]].forEach(([k,n])=>{const vs=Object.values(d[k]||{});if(vs.length){const s=vs.reduce((a,b)=>a+b,0);sc.push(Math.min(10,Math.max(0,5+s)));}});
   [['origQ',10],['profQ',10]].forEach(([k])=>{const vs=Object.values(d[k]||{});if(vs.length){const s=vs.reduce((a,b)=>a+b,0);sc.push(Math.min(10,Math.max(0,5+s)));}});
   Object.keys(MQ[sub.modal]||{}).forEach(cat=>{const vs=Object.values((d.modalQ||{})[cat]||{});if(vs.length){const s=vs.reduce((a,b)=>a+b,0);sc.push(Math.min(10,Math.max(0,5+s)));}});
+  // Bonus scores (nota 1-10): each enters as an extra category in the average
+  const bonusScores=(d.manualErrors||[]).filter(m=>typeof m==='object'&&m.isBonusScore);
+  bonusScores.forEach(m=>sc.push(Math.max(1,Math.min(10,m.score))));
   if(!sc.length) return null;
   return parseFloat((sc.reduce((a,b)=>a+b,0)/sc.length).toFixed(2));
 }
 function finalizeEval(){
+  // Validation: check completion %
+  const _d=currentEvalData,_sub=currentEvalSub;
+  if(_d&&_sub){
+    let _tot=0,_ans=0;
+    _tot+=20;_ans+=Object.keys(_d.retQ||{}).length;
+    _tot+=20;_ans+=Object.keys(_d.logQ||{}).length;
+    _tot+=10;_ans+=Object.keys(_d.origQ||{}).length;
+    _tot+=10;_ans+=Object.keys(_d.profQ||{}).length;
+    Object.keys(MQ[_sub.modal]||{}).forEach(c=>{_tot+=10;_ans+=Object.keys((_d.modalQ||{})[c]||{}).length;});
+    const pct=_tot>0?_ans/_tot:0;
+    if(pct<0.3&&_ans>0){
+      if(!confirm(`Apenas ${Math.round(pct*100)}% das questões foram respondidas. Salvar assim mesmo?`)) return;
+    }
+    if(_ans===0){alert('Responda ao menos algumas questões antes de salvar.');return;}
+  }
   const final=calcFinalScore();
   currentEvalData.finalScore=final;
   currentEvalData.savedAt=new Date().toISOString();
@@ -1474,16 +1619,17 @@ function renderRanking(){
   if(!evId){cont.innerHTML='';return;}
   const ev=DB.eventos.find(e=>e.id===evId);
   const ranked=getRanked(evId);
-  if(!ranked.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px">Nenhum texto avaliado ainda.</div>';return;}
+  if(!ranked.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:18px">Nenhum texto avaliado ainda.</div>';return;}
   const medals=['🥇','🥈','🥉'];
   let html=ev.finalized?`<div class="champion-banner">✦ EVENTO FINALIZADO — PÓDIO SAGRADO ✦</div>`:'';
   html+=`<div class="card">`;
   ranked.forEach((s,i)=>{
-    const medal=i<3?medals[i]:`<span style="font-size:26px;color:var(--text3);font-family:var(--font-sans)">${i+1}º</span>`;
+    const medal=i<3?medals[i]:`<span style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${i+1}º</span>`;
     const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
-    const champ=ev.finalized&&i<3?` <span style="color:var(--gold);font-size:20px">✦ Campeão</span>`:'';
+    const champ=ev.finalized&&i<3?` <span style="color:var(--gold);font-size:15px">✦ Campeão</span>`:'';
     const alchPhrase=getAlchPhrase(s.avg,i,getTier(((DB.participants||{})[s.autor]||{}).tierId||'none'));
-    html+=`<div class="rank-entry"><div class="rank-medal">${medal}</div><div class="rank-info"><div class="rank-title-obra">${s.titulo}${champ}</div><div class="rank-meta">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span> · ${ev.nome} · ${s.avCount} aval.</div><div style="font-size:20px;color:var(--gold);font-family:var(--font-serif);font-style:italic;margin-top:3px;opacity:0.75">${alchPhrase}</div></div><div class="rank-score-big">${s.avg.toFixed(2)}</div></div>`;
+    const podiumClass=i===0?' podium-1':i===1?' podium-2':i===2?' podium-3':'';
+    html+=`<div class="rank-entry${podiumClass}"><div class="rank-medal">${medal}</div><div class="rank-info"><div class="rank-title-obra">${s.titulo}${champ}</div><div class="rank-meta">${s.autor} · <span class="badge ${mB}" style="font-size:14px">${s.modal}</span> · ${ev.nome} · ${s.avCount} aval.</div><div class="alch-phrase">${alchPhrase}</div></div><div class="rank-score-big">${s.avg.toFixed(2)}</div></div>`;
   });
   html+=`</div>`;
   cont.innerHTML=html;
@@ -1495,7 +1641,7 @@ function renderRanking(){
 function renderParticipantes(){
   const cont=document.getElementById('participantesContent');
   const parts=Object.values(DB.participants||{});
-  if(!parts.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px">Nenhum participante.</div>';return;}
+  if(!parts.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:18px">Nenhum participante.</div>';return;}
   parts.sort((a,b)=>getTier(b.tierId||'none').rank-getTier(a.tierId||'none').rank||(b.firsts||0)-(a.firsts||0));
   const TIER_CSS={'none':'color:var(--text3)','acolito_madeira':'color:#a0785a','acolito_ferro':'color:#8a9aa8','acolito_chumbo':'color:#7a7a8a','veterano_bronze':'color:#d4864a','veterano_prata':'color:#c0c0c0','veterano_ouro':'color:var(--gold2)','escritor_topazio':'color:#f0c860','escritor_turmalina':'color:#c070c8','escritor_safira':'color:#60a0f0','escritor_rubi':'color:#f06060','escritor_esmeralda':'color:#50c878','escritor_diamante':'color:#b8f0ff'};
   let html=`<div class="card"><table><thead><tr><th>Participante</th><th>Título</th><th style="text-align:center">🥇</th><th style="text-align:center">🥈</th><th style="text-align:center">🥉</th><th>Histórico recente</th></tr></thead><tbody>`;
@@ -1503,12 +1649,12 @@ function renderParticipantes(){
     const tier=getTier(p.tierId||'none');
     const css=TIER_CSS[tier.id]||'color:var(--text3)';
     const vics=(p.victories||[]).slice(-3).map(v=>`<span class="badge badge-silver" style="margin-right:3px">${v.titulo} (${v.pos}º)</span>`).join('');
-    html+=`<tr><td style="color:var(--text);font-family:var(--font-serif)">${p.name}</td><td><span style="${css};font-family:var(--font-sans);font-size:22px;font-weight:600">${tier.id==='none'?'—':tier.label}</span></td><td style="text-align:center;color:var(--gold)">${p.firsts||0}</td><td style="text-align:center;color:#c0c0c0">${p.seconds||0}</td><td style="text-align:center;color:#d4864a">${p.thirds||0}</td><td>${vics||'<span style="color:var(--text3)">—</span>'}</td></tr>`;
+    html+=`<tr><td style="color:var(--text);font-family:var(--font-serif)">${p.name}</td><td><span style="${css};font-family:var(--font-sans);font-size:16px;font-weight:600">${tier.id==='none'?'—':tier.label}</span></td><td style="text-align:center;color:var(--gold)">${p.firsts||0}</td><td style="text-align:center;color:#c0c0c0">${p.seconds||0}</td><td style="text-align:center;color:#d4864a">${p.thirds||0}</td><td>${vics||'<span style="color:var(--text3)">—</span>'}</td></tr>`;
   });
   html+=`</tbody></table></div>`;
-  html+=`<div class="card"><div class="card-title" style="margin-bottom:0.875rem">Hierarquia de Títulos</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-family:var(--font-sans);font-size:22px">`;
+  html+=`<div class="card"><div class="card-title" style="margin-bottom:0.875rem">Hierarquia de Títulos</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font-family:var(--font-sans);font-size:16px">`;
   TIERS.filter(t=>t.id!=='none').forEach(t=>{const css=TIER_CSS[t.id]||'';html+=`<div style="padding:5px 9px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:4px;${css}">${t.label}</div>`;});
-  html+=`</div><div style="margin-top:0.875rem;font-size:20px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">Títulos são conquistados acumulando pódios. Uma vez atingido, o título nunca retrocede.</div></div>`;
+  html+=`</div><div style="margin-top:0.875rem;font-size:15px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">Títulos são conquistados acumulando pódios. Uma vez atingido, o título nunca retrocede.</div></div>`;
   cont.innerHTML=html;
 }
 
@@ -1562,16 +1708,16 @@ function downloadCert(){
   doc.setFontSize(10);doc.setFont('times','italic');doc.setTextColor(168,160,152);doc.text(`pela obra "${obra}"`,W/2,119,{align:'center'});
   if(dataFmt){doc.setFontSize(8);doc.setFont('helvetica','normal');doc.setTextColor(106,98,88);doc.text(dataFmt,W/2,129,{align:'center'});}
   doc.setFontSize(8);doc.setTextColor(201,168,76);doc.text('✦  ✦  ✦',W/2,147,{align:'center'});
-  doc.setFontSize(6);doc.setTextColor(70,64,58);doc.text('Veritas Literário — Sistema de Avaliação Literária',W/2,H-13,{align:'center'});
+  doc.setFontSize(6);doc.setTextColor(70,64,58);doc.text('Veritas Literário • cronistadovitral.substack.com',W/2,H-13,{align:'center'});
   doc.save(`certificado_${nome.replace(/\s/g,'_')}_${pos}lugar.pdf`);
   DB.emitidos.push({evento:ev,posicao:pos,nome,obra,data:dataFmt,emitidoEm:new Date().toISOString()});
   saveDB();renderCertList();
 }
 function renderCertList(){
   const el=document.getElementById('certList');
-  if(!DB.emitidos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:22px">Nenhum certificado emitido.</div>';return;}
+  if(!DB.emitidos.length){el.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:16px">Nenhum certificado emitido.</div>';return;}
   // CORREÇÃO: fallback
-  el.innerHTML=`<table><thead><tr><th>Evento</th><th>Posição</th><th>Nome</th><th>Obra</th><th>Data</th></tr></thead><tbody>`+(DB.emitidos||[]).map(c=>`<tr><td>${c.evento}</td><td><span class="badge ${c.posicao==='1'?'badge-gold':c.posicao==='2'?'badge-silver':'badge-bronze'}">${c.posicao}º</span></td><td style="color:var(--text)">${c.nome}</td><td>${c.obra}</td><td style="font-size:20px">${c.data}</td></tr>`).join('')+`</tbody></table>`;
+  el.innerHTML=`<table><thead><tr><th>Evento</th><th>Posição</th><th>Nome</th><th>Obra</th><th>Data</th></tr></thead><tbody>`+(DB.emitidos||[]).map(c=>`<tr><td>${c.evento}</td><td><span class="badge ${c.posicao==='1'?'badge-gold':c.posicao==='2'?'badge-silver':'badge-bronze'}">${c.posicao}º</span></td><td style="color:var(--text)">${c.nome}</td><td>${c.obra}</td><td style="font-size:15px">${c.data}</td></tr>`).join('')+`</tbody></table>`;
 }
 
 // ════════════════════════════════════════
@@ -1579,20 +1725,20 @@ function renderCertList(){
 // ════════════════════════════════════════
 function renderPublicoPage(){
   const cont=document.getElementById('publicoContent');
-  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:24px">Nenhum evento disponível.</div>';return;}
-  let html='<div style="margin-bottom:1rem;font-size:24px;font-family:var(--font-sans);color:var(--text3)">Clique em um evento para ver como o participante visualiza. O link pode ser compartilhado.</div>';
+  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:18px">Nenhum evento disponível.</div>';return;}
+  let html='<div style="margin-bottom:1rem;font-size:18px;font-family:var(--font-sans);color:var(--text3)">Clique em um evento para ver como o participante visualiza. O link pode ser compartilhado.</div>';
   html+=DB.eventos.map(ev=>{
     const subs=DB.submissoes.filter(s=>s.eventoId===ev.id).length;
     const ranked=getRanked(ev.id);
     return`<div class="pub-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
-        <div><div style="font-family:var(--font-display);font-size:28px;color:var(--gold2)">${ev.nome}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${subs} submissões · ${ev.finalized?'Finalizado':'Em curso'}</div></div>
+        <div><div style="font-family:var(--font-display);font-size:21px;color:var(--gold2)">${ev.nome}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${subs} submissões · ${ev.finalized?'Finalizado':'Em curso'}</div></div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
           <button class="btn btn-sm" onclick="openPublicView('${ev.id}')">👁 Simular Visualização</button>
           <button class="btn btn-sm" onclick="copyPublicLink('${ev.id}')">🔗 Copiar Link</button>
         </div>
       </div>
-      ${ev.finalized&&ranked.length?`<div style="margin-top:10px;font-size:22px;font-family:var(--font-sans);color:var(--text3)">Vencedores: ${ranked.slice(0,3).map((s,i)=>`<strong style="color:var(--gold2)">${s.titulo}</strong> (${['1º','2º','3º'][i]})`).join(', ')}</div>`:''}
+      ${ev.finalized&&ranked.length?`<div style="margin-top:10px;font-size:16px;font-family:var(--font-sans);color:var(--text3)">Vencedores: ${ranked.slice(0,3).map((s,i)=>`<strong style="color:var(--gold2)">${s.titulo}</strong> (${['1º','2º','3º'][i]})`).join(', ')}</div>`:''}
     </div>`;
   }).join('');
   cont.innerHTML=html;
@@ -1613,14 +1759,14 @@ function renderPublicViewContent(evId){
   const cont=document.getElementById('pubModalContent');
 
   // Event info
-  let html=`<div style="font-size:22px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
+  let html=`<div style="font-size:16px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
     <span class="badge ${ev.finalized?'badge-champion':'badge-silver'}">${ev.finalized?'✦ Finalizado':'Em curso'}</span>
     &nbsp; ${ev.desc||''} &nbsp; Limite: ${ev.words} palavras · Máx: ${ev.max} submissões
   </div>`;
 
   if(ev.finalized){
     // FULL PUBLIC VIEW: ranking + read texts + star ratings
-    html+=`<div class="champion-banner" style="font-size:22px">✦ PÓDIO FINAL — RESULTADOS OFICIAIS ✦</div>`;
+    html+=`<div class="champion-banner" style="font-size:16px">✦ PÓDIO FINAL — RESULTADOS OFICIAIS ✦</div>`;
     const medals=['🥇','🥈','🥉'];
     ranked.forEach((s,i)=>{
       const medal=i<3?medals[i]:`${i+1}º`;
@@ -1634,14 +1780,14 @@ function renderPublicViewContent(evId){
       const scoreBreakdown=buildScoreBreakdown(s,avs);
       html+=`<div class="pub-card" style="${i<3?'border-color:rgba(201,168,76,0.35)':''}">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-          <span style="font-size:44px">${medal}</span>
+          <span style="font-size:33px">${medal}</span>
           <div style="flex:1">
-            <div style="font-family:var(--font-serif);font-size:30px;color:var(--text)">${s.titulo}${i<3?' <span style="color:var(--gold);font-size:22px">✦ Campeão</span>':''}</div>
-            <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span></div>
+            <div style="font-family:var(--font-serif);font-size:22px;color:var(--text)">${s.titulo}${i<3?' <span style="color:var(--gold);font-size:16px">✦ Campeão</span>':''}</div>
+            <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">${s.autor} · <span class="badge ${mB}" style="font-size:14px">${s.modal}</span></div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:40px;color:var(--gold);font-family:var(--font-sans)">${s.avg.toFixed(2)}</div>
-            <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
+            <div style="font-size:30px;color:var(--gold);font-family:var(--font-sans)">${s.avg.toFixed(2)}</div>
+            <div style="font-size:14px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
           </div>
         </div>
         ${scoreBreakdown}
@@ -1649,7 +1795,7 @@ function renderPublicViewContent(evId){
           <button class="btn btn-sm" onclick="toggleReadText('rt_${s.id}','${s.id}')">📖 Ler texto</button>
           <div style="display:flex;align-items:center;gap:6px">
             <div class="stars" id="stars_${starKey}">${[1,2,3,4,5].map(n=>`<span class="star ${myRating>=n?'on':''}" onclick="rateStar('${starKey}',${n},'${evId}')">★</span>`).join('')}</div>
-            <span style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
+            <span style="font-size:15px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
           </div>
         </div>
         <div id="rt_${s.id}" style="display:none;margin-top:10px">
@@ -1666,11 +1812,11 @@ function renderPublicViewContent(evId){
       const avgStars=calcAvgStars(starKey);
       html+=`<div class="pub-card">
         <div style="display:flex;align-items:center;gap:10px">
-          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:26px;color:var(--text)">${s.titulo}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span></div></div>
+          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:20px;color:var(--text)">${s.titulo}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:14px">${s.modal}</span></div></div>
           <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
             <button class="btn btn-sm" onclick="toggleReadText('rt_${s.id}','${s.id}')">📖 Ler</button>
             <div class="stars" id="stars_${starKey}">${[1,2,3,4,5].map(n=>`<span class="star ${myRating>=n?'on':''}" onclick="rateStar('${starKey}',${n},'${evId}')">★</span>`).join('')}</div>
-            <span style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
+            <span style="font-size:15px;color:var(--text3);font-family:var(--font-sans)">${avgStars>0?avgStars.toFixed(1)+' ★':''}</span>
           </div>
         </div>
         <div id="rt_${s.id}" style="display:none;margin-top:10px">
@@ -1680,18 +1826,18 @@ function renderPublicViewContent(evId){
     });
   } else {
     // EVENT IN PROGRESS: show participant their own score breakdown only
-    html+=`<div style="font-size:24px;font-family:var(--font-sans);color:var(--text2);margin-bottom:1rem">O evento ainda está em andamento. As notas completas serão reveladas após a finalização.</div>`;
+    html+=`<div style="font-size:18px;font-family:var(--font-sans);color:var(--text2);margin-bottom:1rem">O evento ainda está em andamento. As notas completas serão reveladas após a finalização.</div>`;
     subs.forEach(s=>{
       // CORREÇÃO: fallback
       const avs=(DB.avaliacoes||[]).filter(a=>a.subId===s.id);
       const sc=avs.map(a=>a.finalScore).filter(x=>x!=null);
       const avg=sc.length?sc.reduce((a,b)=>a+b,0)/sc.length:null;
       const mB=s.modal==='poesia'?'badge-gold':s.modal==='cronica'?'badge-blue':'badge-green';
-      const scoreBreakdown=avs.length?buildScoreBreakdown(s,avs):'<div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:8px">Ainda não avaliado.</div>';
+      const scoreBreakdown=avs.length?buildScoreBreakdown(s,avs):'<div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-top:8px">Ainda não avaliado.</div>';
       html+=`<div class="pub-card">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:28px;color:var(--text)">${s.titulo}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:18px">${s.modal}</span></div></div>
-          ${avg!=null?`<div style="font-size:38px;color:var(--gold);font-family:var(--font-sans)">${avg.toFixed(2)}</div>`:''}
+          <div style="flex:1"><div style="font-family:var(--font-serif);font-size:21px;color:var(--text)">${s.titulo}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans)">${s.autor} · <span class="badge ${mB}" style="font-size:14px">${s.modal}</span></div></div>
+          ${avg!=null?`<div style="font-size:28px;color:var(--gold);font-family:var(--font-sans)">${avg.toFixed(2)}</div>`:''}
         </div>
         ${scoreBreakdown}
       </div>`;
@@ -1726,8 +1872,8 @@ function buildScoreBreakdown(sub,avs){
   let html2=`<div class="pub-score-row">${catScores.map(c=>`<div class="pub-score-item">${c.cat}: <span>${c.avg.toFixed(1)}</span></div>`).join('')}</div>`;
   if(feedbacks.length){
     html2+=`<div style="margin-top:8px;padding:8px 10px;background:rgba(201,168,76,0.04);border:1px solid rgba(201,168,76,0.15);border-radius:var(--radius)">
-      <div style="font-size:20px;color:var(--gold);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Feedback dos Avaliadores</div>
-      ${feedbacks.map(fb=>`<div style="font-size:24px;color:var(--text2);font-family:var(--font-serif);font-style:italic;margin-bottom:6px;line-height:1.6">"${fb.text}"<span style="font-size:20px;color:var(--text3);font-family:var(--font-sans);font-style:normal;margin-left:8px">— ${fb.judge}</span></div>`).join('')}
+      <div style="font-size:15px;color:var(--gold);font-family:var(--font-sans);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px">Feedback dos Avaliadores</div>
+      ${feedbacks.map(fb=>`<div style="font-size:18px;color:var(--text2);font-family:var(--font-serif);font-style:italic;margin-bottom:6px;line-height:1.6">"${fb.text}"<span style="font-size:15px;color:var(--text3);font-family:var(--font-sans);font-style:normal;margin-left:8px">— ${fb.judge}</span></div>`).join('')}
     </div>`;
   }
   return html2;
@@ -1767,7 +1913,7 @@ function renderRevisao(){
   let subs=DB.submissoes||[];
   if(evFilter) subs=subs.filter(s=>s.eventoId===evFilter);
   const list=document.getElementById('revisaoList');
-  if(!subs.length){list.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px">Nenhuma submissão encontrada.</div>';return;}
+  if(!subs.length){list.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:21px">Nenhuma submissão encontrada.</div>';return;}
   const MQ_LOCAL=MQ;
   let html='';
   subs.forEach(sub=>{
@@ -1780,18 +1926,18 @@ function renderRevisao(){
     html+=`<div class="review-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:8px">
         <div>
-          <div style="font-family:var(--font-display);font-size:28px;color:var(--gold2)">${sub.titulo}</div>
-          <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
+          <div style="font-family:var(--font-display);font-size:21px;color:var(--gold2)">${sub.titulo}</div>
+          <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
             ${sub.autor} · <span class="badge ${mB}">${sub.modal}</span> · ${ev?ev.nome:'?'}
           </div>
         </div>
         <div style="text-align:right">
-          <div style="font-size:44px;color:var(--gold);font-family:var(--font-sans)">${avg}</div>
-          <div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">${avs.length} avaliação(ões)</div>
+          <div style="font-size:33px;color:var(--gold);font-family:var(--font-sans)">${avg}</div>
+          <div style="font-size:16px;color:var(--text3);font-family:var(--font-sans)">${avs.length} avaliação(ões)</div>
         </div>
       </div>`;
     if(!avs.length){
-      html+=`<div style="font-size:26px;color:var(--text3);font-family:var(--font-sans);padding:8px 0">Nenhuma avaliação registrada ainda.</div>`;
+      html+=`<div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);padding:8px 0">Nenhuma avaliação registrada ainda.</div>`;
     } else {
       avs.forEach(av=>{
         const cats=['Gramática','Retórica','Lógica','Originalidade','Profundidade Literária',...Object.keys(MQ_LOCAL[sub.modal]||{})];
@@ -1812,9 +1958,9 @@ function renderRevisao(){
 
         html+=`<div class="review-judge-block">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <div style="font-size:26px;font-family:var(--font-sans);font-weight:600;color:var(--text2)">${av.judgeName||av.judgeId}</div>
+            <div style="font-size:20px;font-family:var(--font-sans);font-weight:600;color:var(--text2)">${av.judgeName||av.judgeId}</div>
             <div style="display:flex;align-items:center;gap:8px">
-              <span style="font-size:24px;color:var(--text3);font-family:var(--font-sans)">Nota final:</span>
+              <span style="font-size:18px;color:var(--text3);font-family:var(--font-sans)">Nota final:</span>
               <input class="review-score-input" type="number" min="0" max="10" step="0.01"
                 value="${av.finalScore!=null?av.finalScore.toFixed(2):''}"
                 id="rscore_${av.subId}_${av.judgeId}"
@@ -1833,7 +1979,7 @@ function renderRevisao(){
         });
         html+=`</div>`;
         if(av.feedback){
-          html+=`<div style="margin-top:8px;padding:7px 10px;background:rgba(201,168,76,0.04);border-left:2px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;font-size:26px;font-family:var(--font-serif);font-style:italic;color:var(--text2);line-height:1.6">"${av.feedback}"</div>`;
+          html+=`<div style="margin-top:8px;padding:7px 10px;background:rgba(201,168,76,0.04);border-left:2px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;font-size:20px;font-family:var(--font-serif);font-style:italic;color:var(--text2);line-height:1.6">"${av.feedback}"</div>`;
         }
         html+=`</div>`;
       });
@@ -1858,20 +2004,24 @@ function confirmReviewScore(subId,judgeId){
 // ════════════════════════════════════════
 function renderPublicoPage(){
   const cont=document.getElementById('publicoContent');
-  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:28px">Nenhum evento disponível.</div>';return;}
-  let html=`<div style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;margin-bottom:1.5rem">
+  if(!DB.eventos.length){cont.innerHTML='<div style="color:var(--text3);font-family:var(--font-sans);font-size:21px">Nenhum evento disponível.</div>';return;}
+  let html=`<div style="font-size:21px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;margin-bottom:1.5rem">
     Cada evento gera um link único para o ambiente do participante. O participante acessa diretamente — sem senha — e pode ver todas as obras, notas e certificados.
   </div>`;
   // CORREÇÃO: fallback
   // CORREÇÃO: já tem fallback, garante DB.eventos também
+  html+=`<div style="display:flex;gap:8px;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap">
+    <button class="btn btn-sm" onclick="openTierInfo()" style="border-color:rgba(201,168,76,0.3);color:var(--gold)">◆ Sobre os Títulos</button>
+    <span class="portal-update-time">Última atualização: ${lastUpd}</span>
+  </div>`;
   html+=(Array.isArray(DB.eventos)?DB.eventos:[]).map(ev=>{
     const subs=(Array.isArray(DB.submissoes)?DB.submissoes:[]).filter(s=>s.eventoId===ev.id).length;
     const pubUrl=window.location.href.split('?')[0]+'?pub='+ev.token;
     return`<div class="pub-card">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">
         <div>
-          <div style="font-family:var(--font-display);font-size:30px;color:var(--gold2)">${ev.nome}</div>
-          <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${subs} obras · ${ev.finalized?'✦ Finalizado':'Em curso'}</div>
+          <div style="font-family:var(--font-display);font-size:22px;color:var(--gold2)">${ev.nome}</div>
+          <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${subs} obras · ${ev.finalized?'✦ Finalizado':'Em curso'}</div>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button class="btn btn-sm btn-primary" onclick="openParticipantPortal('${ev.id}')">👁 Prévia do Portal</button>
@@ -1879,7 +2029,7 @@ function renderPublicoPage(){
           ${currentUser&&currentUser.id==='admin'?`<button class="btn btn-sm" onclick="openCertRepo('${ev.id}')" style="border-color:var(--gold);color:var(--gold)">🏆 Repositório de Certificados</button>`:''}
         </div>
       </div>
-      <div style="margin-top:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px;font-size:24px;font-family:var(--font-sans);color:var(--text3);word-break:break-all">
+      <div style="margin-top:10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px;font-size:18px;font-family:var(--font-sans);color:var(--text3);word-break:break-all">
         🔗 ${pubUrl}
       </div>
     </div>`;
@@ -1902,7 +2052,7 @@ function buildParticipantPortalHTML(evId){
   const ranked=getRanked(evId);
   const TIER_CSS={'none':'color:var(--text3)','acolito_madeira':'color:#a0785a','acolito_ferro':'color:#8a9aa8','acolito_chumbo':'color:#7a7a8a','veterano_bronze':'color:#d4864a','veterano_prata':'color:#c0c0c0','veterano_ouro':'color:var(--gold2)','escritor_topazio':'color:#f0c860','escritor_turmalina':'color:#c070c8','escritor_safira':'color:#60a0f0','escritor_rubi':'color:#f06060','escritor_esmeralda':'color:#50c878','escritor_diamante':'color:#b8f0ff'};
 
-  let html=`<div style="font-size:24px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
+  let html=`<div style="font-size:18px;font-family:var(--font-sans);color:var(--text3);margin-bottom:1rem;line-height:1.7">
     <span class="badge ${ev.finalized?'badge-champion':'badge-silver'}">${ev.finalized?'✦ Finalizado':'Em curso'}</span>
     &nbsp;${ev.desc||''}&nbsp; · &nbsp;Limite: ${ev.words} palavras
   </div>`;
@@ -1920,16 +2070,16 @@ function buildParticipantPortalHTML(evId){
       const judgeScoreHTML=judgeAvs.map(av=>`<span class="judge-score-pill">${av.judgeName||av.judgeId}: <strong style="color:var(--gold)">${av.finalScore!=null?av.finalScore.toFixed(2):'—'}</strong></span>`).join('');
       html+=`<div class="pub-card" style="border-color:rgba(201,168,76,0.35);margin-bottom:0.875rem">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
-          <span style="font-size:48px">${medals[i]}</span>
+          <span style="font-size:36px">${medals[i]}</span>
           <div style="flex:1">
-            <div style="font-family:var(--font-serif);font-size:30px;color:var(--text)">${s.titulo} <span style="color:var(--gold);font-size:22px">✦ Campeão</span></div>
-            <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
+            <div style="font-family:var(--font-serif);font-size:22px;color:var(--text)">${s.titulo} <span style="color:var(--gold);font-size:16px">✦ Campeão</span></div>
+            <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:2px">
               ${s.autor} · <span style="${tierCss};font-family:var(--font-sans);font-weight:600">${tier.id!=='none'?tier.label:'—'}</span>
             </div>
           </div>
           <div style="text-align:right">
-            <div style="font-size:48px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${s.avg.toFixed(2)}</div>
-            <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
+            <div style="font-size:36px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${s.avg.toFixed(2)}</div>
+            <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans)">nota final</div>
           </div>
         </div>
         <div class="judge-score-row">${judgeScoreHTML}</div>
@@ -1947,7 +2097,7 @@ function buildParticipantPortalHTML(evId){
 
   // ── TODAS AS OBRAS ──
   html+=`<div class="portal-section-title" style="margin-top:1.5rem">${ev.finalized?'📚 Todas as Obras':'📚 Obras em Disputa'}</div>`;
-  if(!subs.length){html+=`<div style="color:var(--text3);font-family:var(--font-sans);font-size:26px">Nenhuma obra submetida.</div>`;}
+  if(!subs.length){html+=`<div style="color:var(--text3);font-family:var(--font-sans);font-size:20px">Nenhuma obra submetida.</div>`;}
   else{
     subs.forEach(s=>{
       const isRanked=ranked.find(r=>r.id===s.id);
@@ -1962,15 +2112,15 @@ function buildParticipantPortalHTML(evId){
       html+=`<div class="pub-card">
         <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:8px">
           <div style="flex:1">
-            <div style="font-family:var(--font-serif);font-size:28px;color:var(--text)">${s.titulo}</div>
-            <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">
+            <div style="font-family:var(--font-serif);font-size:21px;color:var(--text)">${s.titulo}</div>
+            <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">
               ${s.autor} · <span class="badge ${mB}">${s.modal}</span>
               ${tier.id!=='none'?`· <span style="${tierCss};font-family:var(--font-sans);font-weight:600">${tier.label}</span>`:''}
             </div>
           </div>
-          ${avg!=null?`<div style="text-align:right"><div style="font-size:40px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg.toFixed(2)}</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans)">média</div></div>`:''}
+          ${avg!=null?`<div style="text-align:right"><div style="font-size:30px;color:var(--gold);font-family:var(--font-sans);font-weight:300">${avg.toFixed(2)}</div><div style="font-size:15px;color:var(--text3);font-family:var(--font-sans)">média</div></div>`:''}
         </div>
-        ${judgeScoreHTML?`<div class="judge-score-row">${judgeScoreHTML}</div>`:'<div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Aguardando avaliação</div>'}
+        ${judgeScoreHTML?`<div class="judge-score-row">${judgeScoreHTML}</div>`:'<div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Aguardando avaliação</div>'}
         ${ev.finalized?buildScoreBreakdown(s,DB.avaliacoes.filter(a=>a.subId===s.id)):''}
         <div style="margin-top:8px">
           <button class="btn btn-sm" onclick="toggleReadText('rt2_${s.id}')">📖 Ler texto</button>
@@ -1990,8 +2140,8 @@ function buildCertBadge(evId,pos,sub){
   const cert=certs[pos];
   if(!cert) return '';
   return`<div style="margin-top:8px;padding:8px 12px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.3);border-radius:var(--radius);display:flex;align-items:center;gap:10px">
-    <span style="font-size:32px">🏆</span>
-    <div style="flex:1;font-size:24px;font-family:var(--font-sans);color:var(--gold2)">Certificado disponível</div>
+    <span style="font-size:24px">🏆</span>
+    <div style="flex:1;font-size:18px;font-family:var(--font-sans);color:var(--gold2)">Certificado disponível</div>
     <a href="${cert.data}" download="${cert.name}" class="btn btn-sm btn-primary" style="text-decoration:none">⤓ Baixar</a>
   </div>`;
 }
@@ -2002,18 +2152,18 @@ function openCertRepo(evId){
   if(!ev.certRepo) ev.certRepo={};
   const ranked=getRanked(evId);
   const posLabels={1:'🥇 1º Lugar',2:'🥈 2º Lugar',3:'🥉 3º Lugar'};
-  let html=`<div style="font-size:26px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem;line-height:1.7">
+  let html=`<div style="font-size:20px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem;line-height:1.7">
     Faça upload dos certificados para os três primeiros colocados. Eles ficarão disponíveis para download direto no portal do participante.
   </div>`;
   [1,2,3].forEach(pos=>{
     const winner=ranked[pos-1];
     const cert=ev.certRepo[pos];
     html+=`<div style="margin-bottom:1rem">
-      <div style="font-family:var(--font-display);font-size:26px;color:var(--gold2);margin-bottom:6px">${posLabels[pos]}${winner?` — ${winner.titulo} (${winner.autor})`:' — sem obra avaliada'}</div>
+      <div style="font-family:var(--font-display);font-size:20px;color:var(--gold2);margin-bottom:6px">${posLabels[pos]}${winner?` — ${winner.titulo} (${winner.autor})`:' — sem obra avaliada'}</div>
       <div class="cert-repo-slot ${cert?'has-cert':''}" onclick="document.getElementById('certFile_${evId}_${pos}').click()">
         ${cert
-          ?`<div style="font-size:40px">🏆</div><div style="font-size:26px;color:var(--gold2);font-family:var(--font-sans);margin-top:4px">${cert.name}</div><div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">Clique para substituir</div>`
-          :`<div style="font-size:56px">📂</div><div style="font-size:26px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Clique para fazer upload do certificado</div><div style="font-size:22px;color:var(--text3);font-family:var(--font-sans)">(PDF, imagem)</div>`
+          ?`<div style="font-size:30px">🏆</div><div style="font-size:20px;color:var(--gold2);font-family:var(--font-sans);margin-top:4px">${cert.name}</div><div style="font-size:16px;color:var(--text3);font-family:var(--font-sans)">Clique para substituir</div>`
+          :`<div style="font-size:42px">📂</div><div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">Clique para fazer upload do certificado</div><div style="font-size:16px;color:var(--text3);font-family:var(--font-sans)">(PDF, imagem)</div>`
         }
       </div>
       <input type="file" id="certFile_${evId}_${pos}" accept=".pdf,image/*" style="display:none" onchange="uploadCertRepo('${evId}',${pos},this)" />
@@ -2167,69 +2317,86 @@ function exportRankingImage(){
 function exportInstagramBanner(){
   const evId=document.getElementById('rankingEvento').value;
   if(!evId){alert('Selecione um evento primeiro.');return;}
-  const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return;
+  const ev=(DB.eventos||[]).find(e=>e.id===evId);if(!ev) return;
   const ranked=getRanked(evId);
-  // Build a 1080×1080 canvas directly
   const canvas=document.createElement('canvas');
   canvas.width=1080;canvas.height=1080;
   const ctx=canvas.getContext('2d');
-  // Background gradient
-  const grad=ctx.createRadialGradient(200,400,0,540,540,900);
-  grad.addColorStop(0,'#1a0f06');grad.addColorStop(0.5,'#100c08');grad.addColorStop(1,'#0d0b09');
+  // Dark background matching app
+  const grad=ctx.createRadialGradient(160,400,0,540,540,900);
+  grad.addColorStop(0,'#1c1008');grad.addColorStop(0.5,'#100c07');grad.addColorStop(1,'#0d0b09');
   ctx.fillStyle=grad;ctx.fillRect(0,0,1080,1080);
-  // Decorative border
-  ctx.strokeStyle='rgba(201,168,76,0.6)';ctx.lineWidth=3;
-  ctx.strokeRect(30,30,1020,1020);
-  ctx.strokeStyle='rgba(201,168,76,0.25)';ctx.lineWidth=1;
-  ctx.strokeRect(44,44,992,992);
+  // Crimson outer + gold inner borders (matching app)
+  ctx.strokeStyle='rgba(139,26,26,0.8)';ctx.lineWidth=4;ctx.strokeRect(20,20,1040,1040);
+  ctx.strokeStyle='rgba(201,168,76,0.6)';ctx.lineWidth=2;ctx.strokeRect(30,30,1020,1020);
+  ctx.strokeStyle='rgba(201,168,76,0.25)';ctx.lineWidth=1;ctx.strokeRect(38,38,1004,1004);
   // Corner ornaments
-  [[60,60],[1020,60],[60,1020],[1020,1020]].forEach(([x,y])=>{
-    ctx.strokeStyle='rgba(201,168,76,0.5)';ctx.lineWidth=2;
-    ctx.beginPath();ctx.moveTo(x-18,y);ctx.lineTo(x+18,y);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(x,y-18);ctx.lineTo(x,y+18);ctx.stroke();
+  [[55,55],[1025,55],[55,1025],[1025,1025]].forEach(([x,y])=>{
+    ctx.strokeStyle='rgba(201,168,76,0.7)';ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(x-20,y);ctx.lineTo(x+20,y);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x,y-20);ctx.lineTo(x,y+20);ctx.stroke();
+    // diagonal corners
+    ctx.beginPath();ctx.moveTo(x-12,y-12);ctx.lineTo(x-6,y-6);ctx.stroke();
   });
-  // Title
-  ctx.fillStyle='#e8c96a';ctx.textAlign='center';
-  ctx.font='bold 52px Georgia, serif';
-  ctx.fillText(ev.nome,540,160);
+  // Decorative center diamond
+  ctx.fillStyle='rgba(201,168,76,0.15)';
+  ctx.beginPath();ctx.moveTo(540,60);ctx.lineTo(560,80);ctx.lineTo(540,100);ctx.lineTo(520,80);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='rgba(201,168,76,0.5)';ctx.lineWidth=1;ctx.stroke();
+  // Header ornament
+  ctx.fillStyle='rgba(201,168,76,0.4)';ctx.font='20px Georgia,serif';ctx.textAlign='center';
+  ctx.fillText('✦  ✦  ✦',540,135);
+  // Event name
+  ctx.fillStyle='#e8c96a';ctx.font='bold 54px Georgia,serif';ctx.textAlign='center';
+  const evNome=ev.nome.length>28?ev.nome.substring(0,28)+'…':ev.nome;
+  ctx.fillText(evNome,540,200);
+  // Separator
+  ctx.strokeStyle='rgba(139,26,26,0.6)';ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(80,228);ctx.lineTo(1000,228);ctx.stroke();
+  ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(120,234);ctx.lineTo(960,234);ctx.stroke();
   // Subtitle
-  ctx.fillStyle='rgba(201,168,76,0.5)';ctx.font='28px Georgia, serif';
-  ctx.fillText('✦  Resultados Oficiais  ✦',540,215);
-  // Separator line
-  ctx.strokeStyle='rgba(201,168,76,0.4)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(100,250);ctx.lineTo(980,250);ctx.stroke();
-  // Medals
-  const medals=['🥇','🥈','🥉'];
+  ctx.fillStyle='rgba(201,168,76,0.5)';ctx.font='italic 26px Georgia,serif';
+  ctx.fillText('Resultados Oficiais',540,270);
+  // Podium entries
   const podColors=['#e8c96a','#c0c0c0','#d4864a'];
+  const podBg=['rgba(201,168,76,0.12)','rgba(180,180,180,0.08)','rgba(180,110,50,0.1)'];
+  const labels=['PRIMEIRO LUGAR','SEGUNDO LUGAR','TERCEIRO LUGAR'];
   ranked.slice(0,3).forEach((s,i)=>{
-    const y=320+i*220;
-    // Medal bg pill
-    ctx.fillStyle=`rgba(${i===0?'201,168,76':i===1?'180,180,180':'180,110,50'},0.12)`;
-    roundRect(ctx,80,y-40,920,180,12);ctx.fill();
-    ctx.strokeStyle=`rgba(${i===0?'201,168,76':i===1?'180,180,180':'180,110,50'},0.35)`;ctx.lineWidth=1;
-    roundRect(ctx,80,y-40,920,180,12);ctx.stroke();
-    // Position number
-    ctx.fillStyle=podColors[i];ctx.font='bold 64px Georgia, serif';ctx.textAlign='left';
-    ctx.fillText(['1º','2º','3º'][i],110,y+60);
+    const y=310+i*228;
+    // Entry background
+    ctx.fillStyle=podBg[i];
+    roundRect(ctx,60,y,960,196,14);ctx.fill();
+    ctx.strokeStyle=podColors[i]+'55';ctx.lineWidth=1;
+    roundRect(ctx,60,y,960,196,14);ctx.stroke();
+    // Position label
+    ctx.fillStyle=podColors[i];ctx.font='bold 11px Georgia,serif';ctx.textAlign='left';
+    ctx.fillText(labels[i],90,y+28);
     // Title
-    ctx.fillStyle='#e8e3d8';ctx.font='bold 36px Georgia, serif';ctx.textAlign='left';
-    const titulo=s.titulo.length>32?s.titulo.substring(0,32)+'…':s.titulo;
-    ctx.fillText(titulo,230,y+25);
+    ctx.fillStyle='#e8e3d8';ctx.font='bold 34px Georgia,serif';
+    const titulo=s.titulo.length>30?s.titulo.substring(0,30)+'…':s.titulo;
+    ctx.fillText(titulo,90,y+76);
     // Author
-    ctx.fillStyle='rgba(168,160,152,0.9)';ctx.font='italic 26px Georgia, serif';
-    ctx.fillText(s.autor,230,y+65);
+    ctx.fillStyle='rgba(168,160,152,0.9)';ctx.font='italic 24px Georgia,serif';
+    ctx.fillText(s.autor,90,y+114);
     // Score
-    ctx.fillStyle=podColors[i];ctx.font='bold 56px Georgia, serif';ctx.textAlign='right';
-    ctx.fillText(s.avg.toFixed(2),960,y+50);
+    ctx.fillStyle=podColors[i];ctx.font='bold 60px Georgia,serif';ctx.textAlign='right';
+    ctx.fillText(s.avg.toFixed(2),990,y+118);
+    // Score label
+    ctx.fillStyle=podColors[i]+'99';ctx.font='14px Georgia,serif';
+    ctx.fillText('nota final',990,y+148);
+    // Alch phrase
+    const alch=getAlchPhrase(s.avg,i,getTier(((DB.participants||{})[s.autor]||{}).tierId||'none'));
+    ctx.fillStyle='rgba(201,168,76,0.45)';ctx.font='italic 16px Georgia,serif';ctx.textAlign='left';
+    ctx.fillText('✦ '+alch,90,y+158);
   });
   // Footer
-  ctx.strokeStyle='rgba(201,168,76,0.3)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(100,990);ctx.lineTo(980,990);ctx.stroke();
-  ctx.fillStyle='rgba(201,168,76,0.4)';ctx.font='22px Georgia, serif';ctx.textAlign='center';
-  ctx.fillText('Veritas Literário • cronistadovitral.substack.com',540,1035);
+  ctx.strokeStyle='rgba(201,168,76,0.25)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(80,1010);ctx.lineTo(1000,1010);ctx.stroke();
+  ctx.fillStyle='rgba(201,168,76,0.35)';ctx.font='18px Georgia,serif';ctx.textAlign='center';
+  ctx.fillText('Veritas Literário  •  cronistadovitral.substack.com',540,1045);
   // Download
   const link=document.createElement('a');
-  link.download=`banner_instagram_${ev.nome.replace(/\s/g,'_')}.png`;
+  link.download=`banner_insta_${ev.nome.replace(/\s/g,'_')}.png`;
   link.href=canvas.toDataURL('image/png');link.click();
 }
 
@@ -2249,7 +2416,7 @@ function renderFirebasePage(){
   const cfg=DB.firebaseConfig||{};
   const isConnected=window._fbConnected||false;
   cont.innerHTML=`
-  <div style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1.5rem">
+  <div style="font-size:21px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1.5rem">
     O Firebase Realtime Database sincroniza todos os dados entre dispositivos em tempo real.
     Quando configurado, qualquer avaliação, evento ou submissão aparece instantaneamente para todos os usuários conectados — sem precisar recarregar a página.
   </div>
@@ -2285,7 +2452,7 @@ function renderFirebasePage(){
 
   <div class="card">
     <div class="card-title" style="margin-bottom:0.875rem">Como configurar</div>
-    <ol style="padding-left:1.25rem;font-family:var(--font-sans);font-size:26px;color:var(--text2);line-height:2">
+    <ol style="padding-left:1.25rem;font-family:var(--font-sans);font-size:20px;color:var(--text2);line-height:2">
       <li>Acesse <a href="https://console.firebase.google.com" target="_blank" style="color:var(--gold)">console.firebase.google.com</a></li>
       <li>Crie um projeto (ou use um existente)</li>
       <li>Vá em <strong style="color:var(--text)">Realtime Database</strong> → Criar banco de dados</li>
@@ -2293,7 +2460,7 @@ function renderFirebasePage(){
       <li>Vá em <strong style="color:var(--text)">Configurações do projeto</strong> → Adicionar app Web</li>
       <li>Copie o objeto <code style="color:var(--gold);background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:3px">firebaseConfig</code> e cole acima</li>
     </ol>
-    <div style="margin-top:1rem;padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);font-family:monospace;font-size:24px;color:var(--text3)">
+    <div style="margin-top:1rem;padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);font-family:monospace;font-size:18px;color:var(--text3)">
       <div style="color:var(--text2);margin-bottom:6px">Regras do Realtime Database (para testes):</div>
 {<br>&nbsp;&nbsp;"rules": {<br>&nbsp;&nbsp;&nbsp;&nbsp;".read": true,<br>&nbsp;&nbsp;&nbsp;&nbsp;".write": true<br>&nbsp;&nbsp;}<br>}
     </div>
@@ -2305,7 +2472,7 @@ function renderFirebasePage(){
       <button class="btn btn-primary btn-sm" onclick="pushToFirebase()">⬆ Enviar dados locais para Firebase</button>
       <button class="btn btn-sm" onclick="pullFromFirebase()">⬇ Baixar dados do Firebase</button>
     </div>
-    <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:0.875rem;line-height:1.6">
+    <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:0.875rem;line-height:1.6">
       Os dados são sincronizados automaticamente após cada operação. Use "Enviar" se quiser forçar uma atualização manual.
     </div>
   </div>`:''}
@@ -2425,6 +2592,357 @@ function disconnectFirebase(){
 
 // saveDB já definida acima com suporte a Firebase (duplicata removida)
 
+
+// ════════════════════════════════════════
+// PASSWORD MANAGEMENT
+// ════════════════════════════════════════
+function openChangePass(){
+  const sel=document.getElementById('cpUserId');
+  sel.innerHTML='<option value="">— Selecionar —</option>'+(DB.users||[]).map(u=>`<option value="${u.id}">${u.name}</option>`).join('');
+  const em=document.getElementById('cpAdminEmail');
+  if(em) em.value=DB.adminEmail||'';
+  document.getElementById('cpErr').classList.add('hidden');
+  document.getElementById('cpOk').classList.add('hidden');
+  document.getElementById('cpNewPass').value='';
+  document.getElementById('cpConfirm').value='';
+  showModal('modalChangePass');
+}
+function prefillChangePass(){
+  // no prefill needed — just clear
+  document.getElementById('cpNewPass').value='';
+  document.getElementById('cpConfirm').value='';
+  document.getElementById('cpErr').classList.add('hidden');
+  document.getElementById('cpOk').classList.add('hidden');
+}
+function doChangePass(){
+  const uid=document.getElementById('cpUserId').value;
+  const np=document.getElementById('cpNewPass').value;
+  const nc=document.getElementById('cpConfirm').value;
+  const errEl=document.getElementById('cpErr');
+  const okEl=document.getElementById('cpOk');
+  errEl.classList.add('hidden');okEl.classList.add('hidden');
+  if(!uid){errEl.textContent='Selecione um perfil.';errEl.classList.remove('hidden');return;}
+  if(!np||np.length<4){errEl.textContent='Senha deve ter ao menos 4 caracteres.';errEl.classList.remove('hidden');return;}
+  if(np!==nc){errEl.textContent='As senhas não conferem.';errEl.classList.remove('hidden');return;}
+  const u=DB.users.find(x=>x.id===uid);
+  if(!u){errEl.textContent='Usuário não encontrado.';errEl.classList.remove('hidden');return;}
+  u.pass=np;
+  saveDB();
+  okEl.textContent=`Senha de "${u.name}" alterada com sucesso!`;
+  okEl.classList.remove('hidden');
+  document.getElementById('cpNewPass').value='';
+  document.getElementById('cpConfirm').value='';
+}
+function saveAdminEmail(){
+  const em=document.getElementById('cpAdminEmail').value.trim();
+  if(!em){alert('Informe um e-mail válido.');return;}
+  DB.adminEmail=em;saveDB();
+  const okEl=document.getElementById('cpOk');
+  okEl.textContent='E-mail salvo: '+em;okEl.classList.remove('hidden');
+  setTimeout(()=>okEl.classList.add('hidden'),3000);
+}
+// Emergency reset: if admin forgot password, reset with 'veritas@reset'
+function doLogin(){
+  const name=document.getElementById('loginName').value.trim();
+  const pass=document.getElementById('loginPass').value;
+  // Emergency admin reset
+  if(name.toLowerCase()==='administrador'&&pass==='veritas@reset'){
+    const admin=DB.users.find(u=>u.id==='admin');
+    if(admin){
+      admin.pass='admin2024';saveDB();
+      alert('Senha do administrador redefinida para: admin2024\nFaça login normalmente.');
+      document.getElementById('loginPass').value='';
+      return;
+    }
+  }
+  const u=DB.users.find(u=>u.name.toLowerCase()===name.toLowerCase()&&u.pass===pass);
+  const errEl=document.getElementById('loginErr');
+  if(!u){errEl.textContent='Perfil ou senha incorretos.';errEl.classList.remove('hidden');return;}
+  errEl.classList.add('hidden');
+  currentUser=u;
+  document.getElementById('sidebarName').textContent=u.name;
+  document.getElementById('sidebarRole').textContent=u.role;
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('appShell').classList.remove('hidden');
+  document.getElementById('btnNewEvento').style.display='';
+  document.getElementById('navCustom').style.display=u.id==='admin'?'':'none';
+  const nfb=document.getElementById('navFirebase');if(nfb)nfb.style.display=u.id==='admin'?'':'none';
+  document.getElementById('navServidor').style.display=u.id==='admin'?'':'none';
+  const navRev=document.getElementById('navRevisao');if(navRev)navRev.style.display=u.id==='admin'?'':'none';
+  const btnS=document.getElementById('btnSenhas');if(btnS)btnS.style.display=u.id==='admin'?'':'none';
+  const navAv=document.querySelector('[data-page="avaliar"]');
+  if(navAv) navAv.style.display=u.id==='admin'?'none':'';
+  applyCustomization();
+  renderAll();
+  updateMobNav();
+}
+
+// ════════════════════════════════════════
+// FULLSCREEN READER + ANNOTATIONS + PAGINATION
+// ════════════════════════════════════════
+let _readerSub=null;
+let _readerFontSize=18;
+let _annotPanelOpen=false;
+let _annotTarget=null; // {paraIdx, paraText}
+
+function openReader(sub){
+  if(!sub) return;
+  _readerSub=sub;
+  document.getElementById('readerTitle').textContent=`${sub.titulo} — ${sub.autor}`;
+  // init annotations for this sub
+  if(!DB.annotations) DB.annotations={};
+  if(!DB.annotations[sub.id]) DB.annotations[sub.id]={};
+  renderReaderText();
+  renderAnnotList();
+  document.getElementById('readerOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeReader(){
+  document.getElementById('readerOverlay').classList.remove('open');
+  document.body.style.overflow='';
+  closeAnnotPopup();
+}
+
+function readerFontAdj(delta){
+  _readerFontSize=Math.max(12,Math.min(32,_readerFontSize+delta));
+  document.getElementById('readerFontSize').textContent=_readerFontSize;
+  renderReaderText();
+}
+
+const READER_PAGE_PARAS=5; // paragraphs per page marker
+
+function renderReaderText(){
+  if(!_readerSub) return;
+  const wrap=document.getElementById('readerTextWrap');
+  const paragraphs=_readerSub.texto.split('\n').filter(l=>l.trim()!=='');
+  const annotations=(DB.annotations||{})[_readerSub.id]||{};
+  const totalPages=Math.ceil(paragraphs.length/READER_PAGE_PARAS);
+
+  // Populate page jump
+  const jumpSel=document.getElementById('readerPageJump');
+  if(jumpSel){
+    jumpSel.innerHTML=Array.from({length:totalPages},(_,i)=>`<option value="${i+1}">Página ${i+1} de ${totalPages}</option>`).join('');
+  }
+  document.getElementById('readerPageInfo').textContent=`${paragraphs.length} parágrafos · ${totalPages} páginas`;
+
+  let html='';
+  paragraphs.forEach((p,i)=>{
+    // Page marker every READER_PAGE_PARAS paragraphs
+    if(i>0&&i%READER_PAGE_PARAS===0){
+      const pg=Math.floor(i/READER_PAGE_PARAS)+1;
+      const annotOnPage=Object.keys(annotations).filter(k=>parseInt(k)>=i-READER_PAGE_PARAS&&parseInt(k)<i).length;
+      html+=`<div class="page-marker" id="page_${pg}">
+        <div class="page-marker-line"></div>
+        <div class="page-marker-label">— Página ${pg} ${annotOnPage?`· 💬${annotOnPage}`:''}—</div>
+        <div class="page-marker-line"></div>
+      </div>`;
+    }
+    const hasNote=annotations[i]&&annotations[i].note;
+    const escapedText=p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    html+=`<p class="annotated-para${hasNote?' has-note':''}" 
+      id="rp_${i}" 
+      data-idx="${i}"
+      style="font-size:${_readerFontSize}px"
+      onclick="openAnnotPopup(${i},this)">
+      ${escapedText}${hasNote?`<span class="annotation-dot" title="${annotations[i].note}"></span>`:''}
+    </p>`;
+  });
+  wrap.innerHTML=html||'<p style="color:var(--text3);font-family:var(--font-sans)">Texto vazio.</p>';
+}
+
+function readerJumpPage(pg){
+  const target=document.getElementById(`page_${pg}`);
+  if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  else{
+    // page 1 = scroll to top
+    document.getElementById('readerBody').scrollTop=0;
+  }
+}
+
+function toggleAnnotPanel(){
+  _annotPanelOpen=!_annotPanelOpen;
+  document.getElementById('readerAnnotPanel').style.display=_annotPanelOpen?'flex':'none';
+  if(_annotPanelOpen) renderAnnotList();
+}
+
+function renderAnnotList(){
+  if(!_readerSub) return;
+  const annotations=(DB.annotations||{})[_readerSub.id]||{};
+  const list=document.getElementById('annotList');
+  if(!list) return;
+  const entries=Object.entries(annotations).filter(([k,v])=>v&&v.note).sort(([a],[b])=>parseInt(a)-parseInt(b));
+  if(!entries.length){list.innerHTML='<div style="font-size:12px;color:var(--text3);font-family:var(--font-sans);padding:8px">Nenhuma anotação ainda.</div>';return;}
+  const paragraphs=_readerSub.texto.split('\n').filter(l=>l.trim()!=='');
+  list.innerHTML=entries.map(([idx,v])=>{
+    const pg=Math.floor(parseInt(idx)/READER_PAGE_PARAS)+1;
+    const paraText=(paragraphs[parseInt(idx)]||'').substring(0,60)+(paragraphs[parseInt(idx)]&&paragraphs[parseInt(idx)].length>60?'…':'');
+    return`<div class="annot-item" onclick="scrollToAnnot(${idx})">
+      <div class="annot-item-page">Pág. ${pg} · § ${parseInt(idx)+1}</div>
+      <div class="annot-item-text">${paraText}</div>
+      <div class="annot-item-note">${v.note}</div>
+    </div>`;
+  }).join('');
+}
+
+function scrollToAnnot(idx){
+  const el=document.getElementById(`rp_${idx}`);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+let _annotCurrentIdx=null;
+function openAnnotPopup(idx,el){
+  if(!_readerSub) return;
+  _annotCurrentIdx=idx;
+  const annotations=(DB.annotations||{})[_readerSub.id]||{};
+  const existing=annotations[idx];
+  const paragraphs=_readerSub.texto.split('\n').filter(l=>l.trim()!=='');
+  const pg=Math.floor(idx/READER_PAGE_PARAS)+1;
+  document.getElementById('annotPopupLabel').textContent=`Pág. ${pg} · § ${idx+1}`;
+  document.getElementById('annotPopupCtx').textContent=(paragraphs[idx]||'').substring(0,120)+'…';
+  document.getElementById('annotPopupText').value=existing?existing.note:'';
+  const delBtn=document.getElementById('annotPopupDel');
+  if(delBtn) delBtn.style.display=existing?'':'none';
+  // Position popup near the click
+  const popup=document.getElementById('annotPopup');
+  const rect=el.getBoundingClientRect();
+  popup.style.top=Math.min(rect.bottom+4,window.innerHeight-250)+'px';
+  popup.style.left=Math.min(rect.left,window.innerWidth-310)+'px';
+  popup.classList.add('open');
+  setTimeout(()=>document.getElementById('annotPopupText').focus(),50);
+}
+
+function closeAnnotPopup(){
+  document.getElementById('annotPopup').classList.remove('open');
+  _annotCurrentIdx=null;
+}
+
+function saveAnnotation(){
+  if(_annotCurrentIdx===null||!_readerSub) return;
+  const note=document.getElementById('annotPopupText').value.trim();
+  if(!DB.annotations) DB.annotations={};
+  if(!DB.annotations[_readerSub.id]) DB.annotations[_readerSub.id]={};
+  if(note){
+    DB.annotations[_readerSub.id][_annotCurrentIdx]={note,savedAt:new Date().toISOString()};
+  } else {
+    delete DB.annotations[_readerSub.id][_annotCurrentIdx];
+  }
+  saveDB();
+  closeAnnotPopup();
+  renderReaderText();
+  renderAnnotList();
+}
+
+function deleteAnnotation(){
+  if(_annotCurrentIdx===null||!_readerSub) return;
+  if(!DB.annotations||!DB.annotations[_readerSub.id]) return;
+  delete DB.annotations[_readerSub.id][_annotCurrentIdx];
+  saveDB();
+  closeAnnotPopup();
+  renderReaderText();
+  renderAnnotList();
+}
+
+// Expose annotations in eval tab — call from renderEvalForm
+function getAnnotSummaryForEval(subId){
+  const annotations=(DB.annotations||{})[subId]||{};
+  const entries=Object.entries(annotations).filter(([k,v])=>v&&v.note).sort(([a],[b])=>parseInt(a)-parseInt(b));
+  if(!entries.length) return '';
+  const sub=DB.submissoes.find(s=>s.id===subId);
+  const paragraphs=sub?sub.texto.split('\n').filter(l=>l.trim()!==''):[];
+  return`<div class="eval-section" style="margin-bottom:1.1rem">
+    <div class="eval-section-header">
+      <span class="eval-section-title">💬 Anotações no Texto</span>
+      <span class="eval-section-score" style="font-size:16px">${entries.length}</span>
+    </div>
+    <div class="eval-section-body">
+      ${entries.map(([idx,v])=>{
+        const pg=Math.floor(parseInt(idx)/READER_PAGE_PARAS)+1;
+        const para=(paragraphs[parseInt(idx)]||'').substring(0,80)+'…';
+        return`<div style="margin-bottom:10px;padding:8px 10px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius)">
+          <div style="font-size:11px;color:var(--gold);font-family:var(--font-sans);margin-bottom:3px">Pág. ${pg} · § ${parseInt(idx)+1}</div>
+          <div style="font-size:12px;color:var(--text3);font-family:var(--font-serif);font-style:italic;margin-bottom:4px">"${para}"</div>
+          <div style="font-size:13px;color:var(--text2);font-family:var(--font-sans)">${v.note}</div>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+
+function toggleSepiaMode(){
+  const overlay=document.getElementById('readerOverlay');
+  const btn=document.getElementById('btnSepia');
+  overlay.classList.toggle('sepia');
+  const isSepia=overlay.classList.contains('sepia');
+  if(btn) btn.textContent=isSepia?'☀️':'🌙';
+}
+// Close reader with Escape key
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(document.getElementById('annotPopup').classList.contains('open')) closeAnnotPopup();
+    else if(document.getElementById('readerOverlay').classList.contains('open')) closeReader();
+  }
+});
+
+
+
+function openTierInfo(){
+  const TIER_CSS2={'none':'color:var(--text3)','acolito_madeira':'color:#a0785a','acolito_ferro':'color:#8a9aa8','acolito_chumbo':'color:#7a7a8a','veterano_bronze':'color:#d4864a','veterano_prata':'color:#c0c0c0','veterano_ouro':'color:var(--gold2)','escritor_topazio':'color:#f0c860','escritor_turmalina':'color:#c070c8','escritor_safira':'color:#60a0f0','escritor_rubi':'color:#f06060','escritor_esmeralda':'color:#50c878','escritor_diamante':'color:#b8f0ff'};
+  const rules={'acolito_madeira':'1 primeiro lugar','acolito_ferro':'1 segundo lugar','acolito_chumbo':'1 terceiro lugar','veterano_bronze':'3 primeiros lugares','veterano_prata':'3 segundos lugares','veterano_ouro':'3 terceiros lugares','escritor_topazio':'5 primeiros lugares','escritor_turmalina':'5 segundos lugares','escritor_safira':'5 terceiros lugares','escritor_rubi':'7 primeiros lugares','escritor_esmeralda':'7 segundos lugares','escritor_diamante':'7 terceiros lugares'};
+  const grid=document.getElementById('tierInfoGrid');
+  if(!grid) return;
+  grid.innerHTML=TIERS.filter(t=>t.id!=='none').map(t=>`
+    <div class="tier-card">
+      <div class="tier-card-name" style="${TIER_CSS2[t.id]||''}">${t.label}</div>
+      <div class="tier-card-rule">${rules[t.id]||''}</div>
+    </div>`).join('');
+  showModal('modalTierInfo');
+}
+// ════════════════════════════════════════
+// AUTOSAVE EVALUATION
+// ════════════════════════════════════════
+let _autosaveTimer=null;
+function startAutosave(){
+  stopAutosave();
+  _autosaveTimer=setInterval(()=>{
+    if(!currentEvalSub||!currentEvalData||!currentUser) return;
+    const ind=document.getElementById('autosaveIndicator');
+    if(ind){ind.className='saving';ind.textContent='Salvando…';}
+    // sync feedback field
+    const fbEl=document.getElementById('evalFeedback');
+    if(fbEl) currentEvalData.feedback=fbEl.value.trim();
+    currentEvalData.finalScore=calcFinalScore();
+    currentEvalData.savedAt=new Date().toISOString();
+    if(!Array.isArray(DB.avaliacoes)) DB.avaliacoes=[];
+    const idx=DB.avaliacoes.findIndex(a=>a.subId===currentEvalData.subId&&a.judgeId===currentUser.id);
+    if(idx>=0)DB.avaliacoes[idx]=JSON.parse(JSON.stringify(currentEvalData));
+    else DB.avaliacoes.push(JSON.parse(JSON.stringify(currentEvalData)));
+    saveDB();
+    const now=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    if(ind){ind.className='saved fadeout';ind.textContent='Salvo às '+now;}
+  },30000);
+}
+function stopAutosave(){ if(_autosaveTimer){clearInterval(_autosaveTimer);_autosaveTimer=null;} }
+function updateEvalProgress(){
+  // count answered questions across all sections
+  const d=currentEvalData,sub=currentEvalSub;
+  if(!d||!sub) return;
+  let total=0,answered=0;
+  total+=20;answered+=Object.keys(d.retQ||{}).length; // ret
+  total+=20;answered+=Object.keys(d.logQ||{}).length; // log
+  total+=10;answered+=Object.keys(d.origQ||{}).length; // orig
+  total+=10;answered+=Object.keys(d.profQ||{}).length; // prof
+  Object.keys(MQ[sub.modal]||{}).forEach(cat=>{
+    total+=10;answered+=Object.keys((d.modalQ||{})[cat]||{}).length;
+  });
+  const pct=total>0?Math.round(answered/total*100):0;
+  const bar=document.getElementById('evalProgressFill');
+  if(bar){
+    bar.style.width=pct+'%';
+    bar.style.background=pct>=80?'#5ab870':pct>=40?'var(--gold)':'var(--crimson2)';
+  }
+}
 // ════════════════════════════════════════
 // CUSTOMIZER
 // ════════════════════════════════════════
@@ -2480,32 +2998,32 @@ function openEditalModal(evId){
   const ev=DB.eventos.find(e=>e.id===evId);if(!ev) return;
   const isAdmin=currentUser&&currentUser.id==='admin';
   const docs=ev.docs||[];
-  let html=`<div style="font-family:var(--font-sans);font-size:24px;color:var(--text3);margin-bottom:1rem">${ev.nome} — Edital e Documentos</div>`;
+  let html=`<div style="font-family:var(--font-sans);font-size:18px;color:var(--text3);margin-bottom:1rem">${ev.nome} — Edital e Documentos</div>`;
   if(isAdmin){
     html+=`<div style="margin-bottom:1rem;padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius)">
-      <div style="font-size:22px;font-family:var(--font-sans);color:var(--text2);margin-bottom:8px">Adicionar documento</div>
-      <div class="form-group" style="margin-bottom:8px"><label>Título do Documento</label><input type="text" id="docTitle" placeholder="Ex: Edital Oficial, Regulamento..." style="font-size:24px" /></div>
-      <div class="form-group" style="margin-bottom:8px"><label>Conteúdo / Texto</label><textarea id="docContent" rows="5" placeholder="Cole o texto do edital aqui, ou descreva as regras..." style="font-size:24px"></textarea></div>
+      <div style="font-size:16px;font-family:var(--font-sans);color:var(--text2);margin-bottom:8px">Adicionar documento</div>
+      <div class="form-group" style="margin-bottom:8px"><label>Título do Documento</label><input type="text" id="docTitle" placeholder="Ex: Edital Oficial, Regulamento..." style="font-size:18px" /></div>
+      <div class="form-group" style="margin-bottom:8px"><label>Conteúdo / Texto</label><textarea id="docContent" rows="5" placeholder="Cole o texto do edital aqui, ou descreva as regras..." style="font-size:18px"></textarea></div>
       <div class="form-group" style="margin-bottom:8px">
         <label>Ou anexar arquivo (PDF, imagem)</label>
-        <div class="upload-area" style="font-size:22px" onclick="document.getElementById('docFile').click()">📎 Selecionar arquivo (PDF, PNG, JPG)</div>
+        <div class="upload-area" style="font-size:16px" onclick="document.getElementById('docFile').click()">📎 Selecionar arquivo (PDF, PNG, JPG)</div>
         <input type="file" id="docFile" accept=".pdf,image/*" style="display:none" onchange="previewDocFile(this)" />
-        <div id="docFilePreview" style="font-size:20px;color:var(--gold);margin-top:4px"></div>
+        <div id="docFilePreview" style="font-size:15px;color:var(--gold);margin-top:4px"></div>
       </div>
       <button class="btn btn-primary btn-sm" onclick="addDoc('${evId}')">Adicionar Documento</button>
     </div>`;
   }
-  if(!docs.length){html+=`<div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);padding:1rem 0">Nenhum documento publicado ainda.</div>`;}
+  if(!docs.length){html+=`<div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);padding:1rem 0">Nenhum documento publicado ainda.</div>`;}
   else{
     html+=docs.map((d,i)=>`<div style="padding:0.875rem;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:6px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:${d.content?'8px':'0'}">
-        <div style="font-family:var(--font-display);font-size:24px;color:var(--gold2)">${d.title}</div>
+        <div style="font-family:var(--font-display);font-size:18px;color:var(--gold2)">${d.title}</div>
         <div style="display:flex;gap:6px">
           ${d.file?`<button class="btn btn-sm" onclick="downloadDocFile(${i},'${evId}')">⤓ Baixar</button>`:''}
           ${isAdmin?`<button class="btn btn-sm btn-danger" onclick="removeDoc('${evId}',${i})">✕</button>`:''}
         </div>
       </div>
-      ${d.content?`<div style="font-size:22px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;white-space:pre-wrap;max-height:200px;overflow-y:auto">${escHtml(d.content)}</div>`:''}
+      ${d.content?`<div style="font-size:16px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;white-space:pre-wrap;max-height:200px;overflow-y:auto">${escHtml(d.content)}</div>`:''}
       ${d.isImage?`<img src="${d.file}" style="max-width:100%;max-height:180px;border-radius:var(--radius);margin-top:6px;opacity:0.85" />`:''}
     </div>`).join('');
   }
@@ -2556,56 +3074,56 @@ function renderServidor(){
   <div class="card" style="border-color:var(--border2)">
     <div class="card-title" style="margin-bottom:0.875rem">URL atual do app</div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-      <code style="flex:1;background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:8px 12px;border-radius:var(--radius);font-size:28px;color:var(--gold2);word-break:break-all">${currentUrl}</code>
+      <code style="flex:1;background:rgba(255,255,255,0.03);border:1px solid var(--border);padding:8px 12px;border-radius:var(--radius);font-size:21px;color:var(--gold2);word-break:break-all">${currentUrl}</code>
       <button class="btn btn-sm btn-primary" onclick="navigator.clipboard.writeText('${currentUrl}').then(()=>alert('URL copiada!'))">Copiar</button>
     </div>
-    <div style="margin-top:12px;font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.8">
+    <div style="margin-top:12px;font-size:20px;color:var(--text3);font-family:var(--font-sans);line-height:1.8">
       Se você abriu este arquivo localmente (<code>file://...</code>), os avaliadores precisam acessar o mesmo arquivo no computador deles, ou você precisa servir via servidor HTTP.
     </div>
   </div>
 
   <div class="card">
     <div class="card-title" style="margin-bottom:1rem">Opção 1 — Rede Local (LAN)</div>
-    <p style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
+    <p style="font-size:21px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
       Se você e os avaliadores estiverem na mesma rede Wi-Fi, você pode servir o arquivo como servidor HTTP local em segundos.
     </p>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:10px">
-      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># No terminal, na pasta onde está o arquivo HTML:</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:21px;color:var(--gold2);margin-bottom:10px">
+      <div style="color:var(--text3);font-size:18px;margin-bottom:6px"># No terminal, na pasta onde está o arquivo HTML:</div>
       python3 -m http.server 8080
     </div>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:10px">
-      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># Depois descubra seu IP local:</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:21px;color:var(--gold2);margin-bottom:10px">
+      <div style="color:var(--text3);font-size:18px;margin-bottom:6px"># Depois descubra seu IP local:</div>
       ipconfig &nbsp;&nbsp; (Windows) &nbsp;&nbsp;|&nbsp;&nbsp; ifconfig &nbsp;&nbsp;(Mac/Linux)
     </div>
-    <p style="font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">
+    <p style="font-size:20px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">
       Compartilhe o endereço <strong style="color:var(--text2)">http://SEU-IP:8080/index.html</strong> com os avaliadores. Eles acessam pelo navegador enquanto estiverem na mesma rede.
     </p>
   </div>
 
   <div class="card">
     <div class="card-title" style="margin-bottom:1rem">Opção 2 — Internet (acesso remoto)</div>
-    <p style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
+    <p style="font-size:21px;color:var(--text2);font-family:var(--font-sans);line-height:1.8;margin-bottom:1rem">
       Para que avaliadores acessem de qualquer lugar sem instalar nada, use um serviço de túnel gratuito como <strong>ngrok</strong> ou <strong>Cloudflare Tunnel</strong>.
     </p>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:8px">
-      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># Com ngrok instalado (ngrok.com):</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:21px;color:var(--gold2);margin-bottom:8px">
+      <div style="color:var(--text3);font-size:18px;margin-bottom:6px"># Com ngrok instalado (ngrok.com):</div>
       ngrok http 8080
     </div>
-    <p style="font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.7;margin-bottom:10px">
+    <p style="font-size:20px;color:var(--text3);font-family:var(--font-sans);line-height:1.7;margin-bottom:10px">
       O ngrok gera um link público tipo <code style="color:var(--gold)">https://abc123.ngrok.io</code> que você envia para os avaliadores.
     </p>
-    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:28px;color:var(--gold2);margin-bottom:8px">
-      <div style="color:var(--text3);font-size:24px;margin-bottom:6px"># Com Cloudflare Tunnel (grátis, sem cadastro):</div>
+    <div style="background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:var(--radius);padding:12px 16px;font-family:monospace;font-size:21px;color:var(--gold2);margin-bottom:8px">
+      <div style="color:var(--text3);font-size:18px;margin-bottom:6px"># Com Cloudflare Tunnel (grátis, sem cadastro):</div>
       cloudflared tunnel --url http://localhost:8080
     </div>
   </div>
 
   <div class="card">
     <div class="card-title" style="margin-bottom:1rem">Opção 3 — GitHub Pages (gratuito, sem instalar nada)</div>
-    <p style="font-size:28px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
+    <p style="font-size:21px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
       Suba o arquivo HTML para um repositório público no GitHub, ative o GitHub Pages nas configurações, e compartilhe a URL gerada. Os avaliadores acessam direto no navegador de qualquer lugar do mundo, sem instalar nada.
     </p>
-    <ol style="padding-left:1.25rem;font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:2;margin-top:10px">
+    <ol style="padding-left:1.25rem;font-size:20px;color:var(--text3);font-family:var(--font-sans);line-height:2;margin-top:10px">
       <li>Crie um repositório público em <strong style="color:var(--text2)">github.com</strong></li>
       <li>Faça upload do arquivo <code style="color:var(--gold)">index.html</code></li>
       <li>Em Settings → Pages, selecione a branch <code>main</code> e a pasta <code>/root</code></li>
@@ -2616,10 +3134,10 @@ function renderServidor(){
 
   <div class="card" style="border-color:rgba(201,168,76,0.4)">
     <div class="card-title" style="margin-bottom:0.875rem">⚠️ Importante sobre os dados</div>
-    <p style="font-size:26px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
+    <p style="font-size:20px;color:var(--text2);font-family:var(--font-sans);line-height:1.8">
       Os dados (eventos, submissões, avaliações) ficam no <strong>localStorage do navegador de cada usuário</strong>. Isso significa que cada avaliador tem seu próprio estado local — as avaliações não sincronizam automaticamente entre computadores.
     </p>
-    <p style="font-size:26px;color:var(--text3);font-family:var(--font-sans);line-height:1.8;margin-top:8px">
+    <p style="font-size:20px;color:var(--text3);font-family:var(--font-sans);line-height:1.8;margin-top:8px">
       Para consolidar: o Administrador deve coletar as avaliações individuais de cada avaliador e importar no sistema central. Uma alternativa simples é usar o mesmo computador com múltiplos perfis de navegador, ou combinar as sessões usando a função de exportar/importar dados abaixo.
     </p>
     <div style="margin-top:1rem;display:flex;gap:8px;flex-wrap:wrap">
@@ -2684,12 +3202,12 @@ function renderPixelSlots(c){
     const src=pixels[pos.id];
     const sz=pixels[pos.id+'_size']||48;
     return`<div style="background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:var(--radius);padding:8px">
-      <div style="font-size:20px;font-family:var(--font-sans);color:var(--text3);margin-bottom:6px">${i+1}. ${pos.label}</div>
+      <div style="font-size:15px;font-family:var(--font-sans);color:var(--text3);margin-bottom:6px">${i+1}. ${pos.label}</div>
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
         ${src?`<img src="${src}" style="width:32px;height:32px;image-rendering:pixelated;border:1px solid var(--border2);border-radius:3px" />`:''}
-        <div class="upload-area" style="flex:1;min-width:80px;padding:4px 8px;font-size:18px" onclick="document.getElementById('px_${pos.id}').click()">${src?'Trocar':'+ GIF/PNG'}</div>
+        <div class="upload-area" style="flex:1;min-width:80px;padding:4px 8px;font-size:14px" onclick="document.getElementById('px_${pos.id}').click()">${src?'Trocar':'+ GIF/PNG'}</div>
         <input type="file" id="px_${pos.id}" accept="image/gif,image/png,image/webp" style="display:none" onchange="uploadPixelArt('${pos.id}',this)" />
-        ${src?`<input type="range" min="24" max="120" value="${sz}" style="width:60px" title="Tamanho" oninput="resizePixelArt('${pos.id}',this.value)" /><button class="btn btn-sm btn-danger" style="padding:2px 6px;font-size:18px" onclick="removePixelArt('${pos.id}')">✕</button>`:''}
+        ${src?`<input type="range" min="24" max="120" value="${sz}" style="width:60px" title="Tamanho" oninput="resizePixelArt('${pos.id}',this.value)" /><button class="btn btn-sm btn-danger" style="padding:2px 6px;font-size:14px" onclick="removePixelArt('${pos.id}')">✕</button>`:''}
       </div>
     </div>`;
   }).join('');
@@ -2754,12 +3272,12 @@ function renderCustomizer(){
         <div style="width:20px;height:20px;border-radius:50%;background:${p.crimson}"></div>
         <div style="width:20px;height:20px;border-radius:50%;background:${p.bg};border:1px solid rgba(255,255,255,0.2)"></div>
       </div>
-      <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans)">${p.label}</div>
+      <div style="font-size:14px;color:var(--text3);font-family:var(--font-sans)">${p.label}</div>
     </div>`).join('')}</div>
   </div>
   <div class="custom-section">
     <div class="custom-section-title">Plano de Fundo do App</div>
-    <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:8px">Suporta PNG, JPG, WebP e GIF animado</div>
+    <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-bottom:8px">Suporta PNG, JPG, WebP e GIF animado</div>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start">
       <div>
         <div class="upload-area" style="width:220px" onclick="document.getElementById('bgUploadApp').click()">📎 Selecionar imagem ou GIF</div>
@@ -2783,7 +3301,7 @@ function renderCustomizer(){
   </div>
   <div class="custom-section">
     <div class="custom-section-title">🎮 Pixel Art Festivo — 10 Posições</div>
-    <div style="font-size:20px;color:var(--text3);font-family:var(--font-sans);margin-bottom:10px;line-height:1.6">Coloque GIFs de pixel art em até 10 pontos do app. Ideal para datas festivas (Halloween, Natal, etc).</div>
+    <div style="font-size:15px;color:var(--text3);font-family:var(--font-sans);margin-bottom:10px;line-height:1.6">Coloque GIFs de pixel art em até 10 pontos do app. Ideal para datas festivas (Halloween, Natal, etc).</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${renderPixelSlots(c)}</div>
   </div>
   <div style="margin-top:0.875rem">
@@ -2932,8 +3450,8 @@ window.addEventListener('DOMContentLoaded',()=>{
         if(cont){
           const portal=buildParticipantPortalHTML(_ev.id);
           const header=`<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:1px solid var(--border)">
-            <div><div style="font-family:var(--font-display);font-size:40px;color:var(--gold2)">${_ev.nome}</div>
-            <div style="font-size:24px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${_ev.finalized?'✦ Evento Finalizado':'Em andamento'}</div></div></div>`;
+            <div><div style="font-family:var(--font-display);font-size:30px;color:var(--gold2)">${_ev.nome}</div>
+            <div style="font-size:18px;color:var(--text3);font-family:var(--font-sans);margin-top:3px">${_ev.finalized?'✦ Evento Finalizado':'Em andamento'}</div></div></div>`;
           cont.innerHTML=header+portal;
         }
       },50);
@@ -2977,6 +3495,106 @@ window.addEventListener('DOMContentLoaded',()=>{
   <div class="mob-more-item" id="mobLogoutItem" onclick="doLogout()" style="color:var(--crimson2)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> Sair</div>
 </div>
 
+
+<!-- ═══ FULLSCREEN READER ═══ -->
+<div id="readerOverlay">
+  <div class="reader-topbar">
+    <div class="reader-title" id="readerTitle">—</div>
+    <div class="reader-controls">
+      <span style="font-size:11px;color:var(--text3);font-family:var(--font-sans)">Fonte:</span>
+      <button class="reader-font-btn" onclick="readerFontAdj(-2)">A−</button>
+      <button class="reader-font-btn" id="readerFontSize" onclick="void(0)" style="cursor:default;color:var(--gold);min-width:36px;text-align:center">18</button>
+      <button class="reader-font-btn" onclick="readerFontAdj(2)">A+</button>
+      <button class="reader-font-btn" onclick="toggleAnnotPanel()" title="Anotações">💬</button>
+      <button class="reader-font-btn" onclick="toggleSepiaMode()" title="Modo Sépia" id="btnSepia">🌙</button>
+      <button class="btn btn-primary btn-sm" onclick="closeReader()">✕ Fechar</button>
+    </div>
+    <div style="width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:4px">
+      <span style="font-size:11px;color:var(--text3);font-family:var(--font-sans)">Ir para página:</span>
+      <select id="readerPageJump" onchange="readerJumpPage(this.value)" style="width:120px;font-size:12px;padding:3px 6px"></select>
+      <span id="readerPageInfo" style="font-size:11px;color:var(--text3);font-family:var(--font-sans)"></span>
+    </div>
+  </div>
+  <div style="display:flex;flex:1;overflow:hidden">
+    <div id="readerBody">
+      <div class="reader-text-wrap" id="readerTextWrap"></div>
+    </div>
+    <div class="reader-annot-panel" id="readerAnnotPanel" style="display:none">
+      <div class="annot-panel-header">💬 Anotações</div>
+      <div class="annot-list" id="annotList"></div>
+      <div class="annot-add-form">
+        <div style="font-size:11px;color:var(--text3);font-family:var(--font-sans);margin-bottom:5px">Clique em um parágrafo para anotar</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ANNOTATION POPUP ═══ -->
+<div id="annotPopup">
+  <div style="font-size:11px;color:var(--gold);font-family:var(--font-sans);margin-bottom:6px" id="annotPopupLabel">Parágrafo —</div>
+  <div id="annotPopupCtx" style="font-size:12px;color:var(--text3);font-family:var(--font-serif);font-style:italic;margin-bottom:8px;line-height:1.5;max-height:60px;overflow:hidden"></div>
+  <textarea id="annotPopupText" rows="3" placeholder="Sua anotação..." style="font-size:13px;margin-bottom:6px;resize:vertical"></textarea>
+  <div style="display:flex;gap:6px;justify-content:flex-end">
+    <button class="btn btn-sm btn-danger" id="annotPopupDel" onclick="deleteAnnotation()" style="display:none">Remover</button>
+    <button class="btn btn-sm" onclick="closeAnnotPopup()">Cancelar</button>
+    <button class="btn btn-sm btn-primary" onclick="saveAnnotation()">Salvar</button>
+  </div>
+</div>
+
+<!-- ═══ CHANGE PASSWORD MODAL ═══ -->
+<div id="modalChangePass" class="modal-overlay hidden" onclick="closeModalClick(event,'modalChangePass')">
+  <div class="modal" style="width:480px">
+    <button class="modal-close" onclick="closeModal('modalChangePass')">✕</button>
+    <h3>Gerenciar Senhas</h3>
+    <div style="font-size:13px;color:var(--text2);font-family:var(--font-sans);margin-bottom:1.25rem;line-height:1.6">
+      Altere a senha de qualquer perfil. Como administrador, você pode redefinir todas.
+    </div>
+    <div class="form-group">
+      <label>Perfil</label>
+      <select id="cpUserId" style="font-size:14px" onchange="prefillChangePass()">
+        <option value="">— Selecionar —</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Nova Senha</label>
+      <input type="password" id="cpNewPass" placeholder="Nova senha" style="font-size:14px"/>
+    </div>
+    <div class="form-group">
+      <label>Confirmar Nova Senha</label>
+      <input type="password" id="cpConfirm" placeholder="Repetir senha" style="font-size:14px"/>
+    </div>
+    <div id="cpErr" class="alert alert-err hidden"></div>
+    <div id="cpOk" class="alert alert-ok hidden">Senha alterada com sucesso!</div>
+    <div class="form-group" style="margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)">
+      <label>E-mail do Administrador (para recuperação)</label>
+      <input type="email" id="cpAdminEmail" placeholder="admin@exemplo.com" style="font-size:14px"/>
+      <div style="font-size:11px;color:var(--text3);font-family:var(--font-sans);margin-top:4px">
+        Guardado localmente. Em caso de esquecimento, a senha admin padrão de recuperação é <code style="color:var(--gold)">veritas@reset</code>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="doChangePass()">Alterar Senha</button>
+      <button class="btn" onclick="saveAdminEmail()">Salvar E-mail</button>
+      <button class="btn" onclick="closeModal('modalChangePass')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TIER INFO MODAL -->
+<div id="modalTierInfo" class="modal-overlay hidden" onclick="closeModalClick(event,'modalTierInfo')">
+  <div class="modal" style="width:600px">
+    <button class="modal-close" onclick="closeModal('modalTierInfo')">✕</button>
+    <h3>Hierarquia de Títulos</h3>
+    <div style="font-size:13px;color:var(--text2);font-family:var(--font-sans);line-height:1.7;margin-bottom:1.25rem">
+      Os títulos são conquistados acumulando pódios em diferentes concursos. Uma vez atingido, o título nunca retrocede — ele é permanente, como uma ordem literária.
+    </div>
+    <div class="tier-grid" id="tierInfoGrid"></div>
+    <div style="margin-top:1.25rem;padding:0.875rem;background:rgba(201,168,76,0.05);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);font-size:12px;color:var(--text3);font-family:var(--font-sans);line-height:1.7">
+      <strong style="color:var(--gold2)">Como progredir:</strong> Participe de concursos, submeta obras e conquiste pódios. 
+      Cada primeiro lugar, segundo lugar ou terceiro lugar acumula para o seu título.
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
